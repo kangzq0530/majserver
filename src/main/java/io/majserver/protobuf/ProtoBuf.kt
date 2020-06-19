@@ -1,7 +1,7 @@
 /*
  * Copyright 2017-2020 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  *
- * Some code changed for packed repeated field support
+ * Some code changed for packed repeated field and nullable field support
  */
 @file:Suppress("DEPRECATION_ERROR")
 package io.majserver.protobuf
@@ -172,7 +172,9 @@ public class ProtoBuf(
         override fun <T : Any> encodeNullableSerializableValue(serializer: SerializationStrategy<T>, value: T?) {
             if (value == null) {
                 encodeTaggedNull(popTag())
-            } else encodeSerializableValue(serializer, value)
+            } else {
+                encodeSerializableValue(serializer, value)
+            }
         }
 
     }

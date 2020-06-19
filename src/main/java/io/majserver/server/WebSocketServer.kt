@@ -6,6 +6,7 @@ import kotlinx.serialization.SerializationStrategy
 import lq.*
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
+import java.io.ByteArrayOutputStream
 import java.net.InetSocketAddress
 import java.nio.ByteBuffer
 
@@ -55,7 +56,12 @@ class WebSocketServer(address: InetSocketAddress?) : org.java_websocket.server.W
                 )
         )
         val resWrapper = Wrapper(wrapper.name, serialize(ResLogin.serializer(), resLogin))
-        conn.send(serialize(Wrapper.serializer(), resWrapper))
+        val baos = ByteArrayOutputStream()
+        baos.write(3)
+        baos.write(index and 0xFF)
+        baos.write(index shl 8)
+        baos.write(serialize(Wrapper.serializer(), resWrapper))
+        conn.send(baos.toByteArray())
     }
 
     override fun onError(conn: WebSocket, ex: Exception) {
