@@ -4,7 +4,7 @@
  * Some code changed for packed repeated field and nullable field support
  */
 @file:Suppress("DEPRECATION_ERROR")
-package io.majserver.protobuf
+package io.majserver.network.proto
 
 import kotlinx.io.*
 import kotlinx.serialization.*
@@ -13,9 +13,9 @@ import kotlinx.serialization.builtins.*
 import kotlinx.serialization.internal.*
 import kotlinx.serialization.modules.*
 import kotlinx.serialization.protobuf.*
-import io.majserver.protobuf.ProtoBuf.Varint.decodeSignedVarintInt
-import io.majserver.protobuf.ProtoBuf.Varint.decodeSignedVarintLong
-import io.majserver.protobuf.ProtoBuf.Varint.decodeVarint
+import io.majserver.network.proto.ProtoBuf.Varint.decodeSignedVarintInt
+import io.majserver.network.proto.ProtoBuf.Varint.decodeSignedVarintLong
+import io.majserver.network.proto.ProtoBuf.Varint.decodeVarint
 
 internal typealias ProtoDesc = Pair<Int, ProtoNumberType>
 
