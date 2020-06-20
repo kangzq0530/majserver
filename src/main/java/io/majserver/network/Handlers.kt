@@ -8,12 +8,12 @@ object Handlers {
 
     @JvmStatic
     fun registerHandlers() {
-        register(Lobby.Login {
-            ResLogin()
-        })
-    }
-
-    fun register(rpc: IProtoRpc<out IProtoMessage, out IProtoMessage>) {
+        val rpc = Lobby.Login {
+            println(it)
+            ResLogin(
+                    access_token = it.password
+            )
+        }
         handlers[rpc.name] = rpc
     }
 

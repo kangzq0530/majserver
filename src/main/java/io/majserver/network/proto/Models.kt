@@ -5,16 +5,14 @@ import kotlinx.serialization.protobuf.ProtoId
 
 val EMPTY_BYTE_ARRAY = ByteArray(0)
 
-@Serializable 
-class NotifyRoomGameStart (
+@Serializable data class NotifyRoomGameStart (
     @ProtoId(1) @JvmField val game_url: String? = null,
     @ProtoId(2) @JvmField val connect_token: String? = null,
     @ProtoId(3) @JvmField val game_uuid: String? = null,
     @ProtoId(4) @JvmField val location: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyMatchGameStart (
+@Serializable data class NotifyMatchGameStart (
     @ProtoId(1) @JvmField val game_url: String? = null,
     @ProtoId(2) @JvmField val connect_token: String? = null,
     @ProtoId(3) @JvmField val game_uuid: String? = null,
@@ -22,137 +20,111 @@ class NotifyMatchGameStart (
     @ProtoId(5) @JvmField val location: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyRoomPlayerReady (
+@Serializable data class NotifyRoomPlayerReady (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val ready: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class NotifyRoomPlayerDressing (
+@Serializable data class NotifyRoomPlayerDressing (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val dressing: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class NotifyRoomPlayerUpdate (
+@Serializable data class NotifyRoomPlayerUpdate (
     @ProtoId(1) @JvmField val update_list: List<PlayerBaseView> = emptyList(),
     @ProtoId(2) @JvmField val remove_list: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val owner_id: Int = 0,
     @ProtoId(4) @JvmField val robot_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyRoomKickOut () : IProtoMessage
+@Serializable class NotifyRoomKickOut () : IProtoMessage
 
-@Serializable 
-class NotifyMatchTimeout () : IProtoMessage
+@Serializable class NotifyMatchTimeout () : IProtoMessage
 
-@Serializable 
-class NotifyFriendStateChange (
+@Serializable data class NotifyFriendStateChange (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val active_state: AccountActiveState? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyFriendViewChange (
+@Serializable data class NotifyFriendViewChange (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val base: PlayerBaseView? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyFriendChange (
+@Serializable data class NotifyFriendChange (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val friend: Friend? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyNewFriendApply (
+@Serializable data class NotifyNewFriendApply (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val apply_time: Int = 0,
     @ProtoId(3) @JvmField val removed_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyClientMessage (
+@Serializable data class NotifyClientMessage (
     @ProtoId(1) @JvmField val sender: PlayerBaseView? = null,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyAccountUpdate (
+@Serializable data class NotifyAccountUpdate (
     @ProtoId(1) @JvmField val update: AccountUpdate? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyAnotherLogin () : IProtoMessage
+@Serializable class NotifyAnotherLogin () : IProtoMessage
 
-@Serializable 
-class NotifyAccountLogout () : IProtoMessage
+@Serializable class NotifyAccountLogout () : IProtoMessage
 
-@Serializable 
-class NotifyAnnouncementUpdate (
+@Serializable data class NotifyAnnouncementUpdate (
     @ProtoId(1) @JvmField val announcements: List<Announcement> = emptyList(),
     @ProtoId(2) @JvmField val sort: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyNewMail (
+@Serializable data class NotifyNewMail (
     @ProtoId(1) @JvmField val mail: Mail? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyDeleteMail (
+@Serializable data class NotifyDeleteMail (
     @ProtoId(1) @JvmField val mail_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyReviveCoinUpdate (
+@Serializable data class NotifyReviveCoinUpdate (
     @ProtoId(1) @JvmField val has_gained: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class NotifyDailyTaskUpdate (
+@Serializable data class NotifyDailyTaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList(),
     @ProtoId(2) @JvmField val max_daily_task_count: Int = 0,
     @ProtoId(3) @JvmField val refresh_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyActivityTaskUpdate (
+@Serializable data class NotifyActivityTaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyActivityPeriodTaskUpdate (
+@Serializable data class NotifyActivityPeriodTaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyAccountRandomTaskUpdate (
+@Serializable data class NotifyAccountRandomTaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyNewComment () : IProtoMessage
+@Serializable class NotifyNewComment () : IProtoMessage
 
-@Serializable 
-class NotifyRollingNotice (
+@Serializable data class NotifyRollingNotice (
     @ProtoId(1) @JvmField val notice: RollingNotice? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyGiftSendRefresh () : IProtoMessage
+@Serializable class NotifyGiftSendRefresh () : IProtoMessage
 
-@Serializable 
-class NotifyShopUpdate (
+@Serializable data class NotifyShopUpdate (
     @ProtoId(1) @JvmField val shop_info: ShopInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyVipLevelChange (
+@Serializable data class NotifyVipLevelChange (
     @ProtoId(1) @JvmField val gift_limit: Int = 0,
     @ProtoId(2) @JvmField val friend_max_count: Int = 0,
     @ProtoId(3) @JvmField val zhp_free_refresh_limit: Int = 0,
@@ -161,21 +133,18 @@ class NotifyVipLevelChange (
     @ProtoId(6) @JvmField val record_collect_limit: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyServerSetting (
+@Serializable data class NotifyServerSetting (
     @ProtoId(1) @JvmField val settings: ServerSettings? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyPayResult (
+@Serializable data class NotifyPayResult (
     @ProtoId(1) @JvmField val pay_result: Int = 0,
     @ProtoId(2) @JvmField val order_id: String? = null,
     @ProtoId(3) @JvmField val goods_id: Int = 0,
     @ProtoId(4) @JvmField val new_month_ticket: Int = 0,
     @ProtoId(5) @JvmField val resource_modify: List<ResourceModify> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class ResourceModify (
+@Serializable data class ResourceModify (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val final: Int = 0
@@ -183,8 +152,7 @@ class ResourceModify (
 
 }
 
-@Serializable 
-class NotifyCustomContestAccountMsg (
+@Serializable data class NotifyCustomContestAccountMsg (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val account_id: Int = 0,
     @ProtoId(3) @JvmField val sender: String? = null,
@@ -192,8 +160,7 @@ class NotifyCustomContestAccountMsg (
     @ProtoId(5) @JvmField val verified: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyCustomContestSystemMsg (
+@Serializable data class NotifyCustomContestSystemMsg (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val uuid: String? = null,
@@ -201,67 +168,56 @@ class NotifyCustomContestSystemMsg (
     @ProtoId(5) @JvmField val game_end: CustomizedContestGameEnd? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyCustomContestState (
+@Serializable data class NotifyCustomContestState (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val state: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyActivityChange (
+@Serializable data class NotifyActivityChange (
     @ProtoId(1) @JvmField val new_activities: List<Activity> = emptyList(),
     @ProtoId(2) @JvmField val end_activities: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyAFKResult (
+@Serializable data class NotifyAFKResult (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val ban_end_time: Int = 0,
     @ProtoId(3) @JvmField val game_uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class Error (
+@Serializable data class Error (
     @ProtoId(1) @JvmField val code: Int = 0,
     @ProtoId(2) @JvmField val u32_params: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val str_params: String? = null,
     @ProtoId(4) @JvmField val json_param: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class Wrapper (
+@Serializable data class Wrapper (
     @ProtoId(1) @JvmField val name: String? = null,
     @ProtoId(2) @JvmField val data: ByteArray = EMPTY_BYTE_ARRAY
 ) : IProtoMessage
 
-@Serializable 
-class NetworkEndpoint (
+@Serializable data class NetworkEndpoint (
     @ProtoId(1) @JvmField val family: String? = null,
     @ProtoId(2) @JvmField val address: String? = null,
     @ProtoId(3) @JvmField val port: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCommon () : IProtoMessage
+@Serializable class ReqCommon () : IProtoMessage
 
-@Serializable 
-class ResCommon (
+@Serializable data class ResCommon (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountUpdate (
+@Serializable data class ResAccountUpdate (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val update: AccountUpdate? = null
 ) : IProtoMessage
 
-@Serializable 
-class AntiAddiction (
+@Serializable data class AntiAddiction (
     @ProtoId(1) @JvmField val online_duration: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AccountMahjongStatistic (
+@Serializable data class AccountMahjongStatistic (
     @ProtoId(1) @JvmField val final_position_counts: List<Int> = emptyList(),
     @ProtoId(2) @JvmField val recent_round: RoundSummary? = null,
     @ProtoId(3) @JvmField val recent_hu: HuSummary? = null,
@@ -270,23 +226,20 @@ class AccountMahjongStatistic (
     @ProtoId(7) @JvmField val recent_10_hu_summary: LiQi10Summary? = null,
     @ProtoId(8) @JvmField val recent_10_game_result: List<GameResult> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class RoundSummary (
+@Serializable data class RoundSummary (
     @ProtoId(1) @JvmField val total_count: Int = 0,
     @ProtoId(2) @JvmField val rong_count: Int = 0,
     @ProtoId(3) @JvmField val zimo_count: Int = 0,
     @ProtoId(4) @JvmField val fangchong_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class HuSummary (
+@Serializable data class HuSummary (
     @ProtoId(1) @JvmField val total_count: Int = 0,
     @ProtoId(2) @JvmField val dora_round_count: Int = 0,
     @ProtoId(3) @JvmField val total_fan: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class HighestHuRecord (
+@Serializable data class HighestHuRecord (
     @ProtoId(1) @JvmField val fanshu: Int = 0,
     @ProtoId(2) @JvmField val doranum: Int = 0,
     @ProtoId(3) @JvmField val title: String? = null,
@@ -296,48 +249,41 @@ class HighestHuRecord (
     @ProtoId(7) @JvmField val title_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Liqi20Summary (
+@Serializable data class Liqi20Summary (
     @ProtoId(1) @JvmField val total_count: Int = 0,
     @ProtoId(2) @JvmField val total_lidora_count: Int = 0,
     @ProtoId(3) @JvmField val average_hu_point: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class LiQi10Summary (
+@Serializable data class LiQi10Summary (
     @ProtoId(1) @JvmField val total_xuanshang: Int = 0,
     @ProtoId(2) @JvmField val total_fanshu: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class GameResult (
+@Serializable data class GameResult (
     @ProtoId(1) @JvmField val rank: Int = 0,
     @ProtoId(2) @JvmField val final_point: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class AccountStatisticData (
+@Serializable data class AccountStatisticData (
     @ProtoId(1) @JvmField val mahjong_category: Int = 0,
     @ProtoId(2) @JvmField val game_category: Int = 0,
     @ProtoId(3) @JvmField val statistic: AccountMahjongStatistic? = null
 ) : IProtoMessage
 
-@Serializable 
-class AccountLevel (
+@Serializable data class AccountLevel (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val score: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ViewSlot (
+@Serializable data class ViewSlot (
     @ProtoId(1) @JvmField val slot: Int = 0,
     @ProtoId(2) @JvmField val item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Account (
+@Serializable data class Account (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val nickname: String? = null,
     @ProtoId(3) @JvmField val login_time: Int = 0,
@@ -363,27 +309,23 @@ class Account (
     @ProtoId(25) @JvmField val platform_skin_ticket: List<PlatformSkinTicket> = emptyList(),
     @ProtoId(26) @JvmField val verified: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class PlatformDiamond (
+@Serializable data class PlatformDiamond (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class PlatformSkinTicket (
+@Serializable data class PlatformSkinTicket (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class AccountOwnerData (
+@Serializable data class AccountOwnerData (
     @ProtoId(1) @JvmField val unlock_characters: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class AccountUpdate (
+@Serializable data class AccountUpdate (
     @ProtoId(1) @JvmField val numerical: List<NumericalUpdate> = emptyList(),
     @ProtoId(2) @JvmField val character: CharacterUpdate? = null,
     @ProtoId(3) @JvmField val bag: BagUpdate? = null,
@@ -397,59 +339,50 @@ class AccountUpdate (
     @ProtoId(11) @JvmField val activity_period_task: TaskUpdate? = null,
     @ProtoId(12) @JvmField val activity_random_task: TaskUpdate? = null
 ) : IProtoMessage {
-@Serializable 
-class NumericalUpdate (
+@Serializable data class NumericalUpdate (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(3) @JvmField val final: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class CharacterUpdate (
+@Serializable data class CharacterUpdate (
     @ProtoId(2) @JvmField val characters: List<Character> = emptyList(),
     @ProtoId(3) @JvmField val skins: List<Int> = emptyList(),
     @ProtoId(4) @JvmField val finished_endings: List<Int> = emptyList(),
     @ProtoId(5) @JvmField val rewarded_endings: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class AchievementUpdate (
+@Serializable data class AchievementUpdate (
     @ProtoId(1) @JvmField val progresses: List<AchievementProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class DailyTaskUpdate (
+@Serializable data class DailyTaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class TitleUpdate (
+@Serializable data class TitleUpdate (
     @ProtoId(1) @JvmField val new_titles: List<Int> = emptyList(),
     @ProtoId(2) @JvmField val remove_titles: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class TaskUpdate (
+@Serializable data class TaskUpdate (
     @ProtoId(1) @JvmField val progresses: List<TaskProgress> = emptyList()
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class GameMetaData (
+@Serializable data class GameMetaData (
     @ProtoId(1) @JvmField val room_id: Int = 0,
     @ProtoId(2) @JvmField val mode_id: Int = 0,
     @ProtoId(3) @JvmField val contest_uid: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AccountPlayingGame (
+@Serializable data class AccountPlayingGame (
     @ProtoId(1) @JvmField val game_uuid: String? = null,
     @ProtoId(2) @JvmField val category: Int = 0,
     @ProtoId(3) @JvmField val meta: GameMetaData? = null
 ) : IProtoMessage
 
-@Serializable 
-class AccountCacheView (
+@Serializable data class AccountCacheView (
     @ProtoId(1) @JvmField val cache_version: Int = 0,
     @ProtoId(2) @JvmField val account_id: Int = 0,
     @ProtoId(3) @JvmField val nickname: String? = null,
@@ -469,8 +402,7 @@ class AccountCacheView (
     @ProtoId(17) @JvmField val comment_ban: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class PlayerBaseView (
+@Serializable data class PlayerBaseView (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val avatar_id: Int = 0,
     @ProtoId(3) @JvmField val title: Int = 0,
@@ -481,8 +413,7 @@ class PlayerBaseView (
     @ProtoId(8) @JvmField val verified: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class PlayerGameView (
+@Serializable data class PlayerGameView (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val avatar_id: Int = 0,
     @ProtoId(3) @JvmField val title: Int = 0,
@@ -495,8 +426,7 @@ class PlayerGameView (
     @ProtoId(10) @JvmField val views: List<ViewSlot> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameMode (
+@Serializable data class GameMode (
     @ProtoId(1) @JvmField val mode: Int = 0,
     @ProtoId(4) @JvmField val ai: Boolean = false,
     @ProtoId(5) @JvmField val extendinfo: String? = null,
@@ -504,14 +434,12 @@ class GameMode (
     @ProtoId(7) @JvmField val testing_environment: GameTestingEnvironmentSet? = null
 ) : IProtoMessage
 
-@Serializable 
-class GameTestingEnvironmentSet (
+@Serializable data class GameTestingEnvironmentSet (
     @ProtoId(1) @JvmField val paixing: Int = 0,
     @ProtoId(2) @JvmField val left_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class GameDetailRule (
+@Serializable data class GameDetailRule (
     @ProtoId(1) @JvmField val time_fixed: Int = 0,
     @ProtoId(2) @JvmField val time_add: Int = 0,
     @ProtoId(3) @JvmField val dora_count: Int = 0,
@@ -561,8 +489,7 @@ class GameDetailRule (
     @ProtoId(47) @JvmField val open_hand: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Room (
+@Serializable data class Room (
     @ProtoId(1) @JvmField val room_id: Int = 0,
     @ProtoId(2) @JvmField val owner_id: Int = 0,
     @ProtoId(3) @JvmField val mode: GameMode? = null,
@@ -575,12 +502,10 @@ class Room (
     @ProtoId(10) @JvmField val tournament_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class GameEndResult (
+@Serializable data class GameEndResult (
     @ProtoId(1) @JvmField val players: List<PlayerItem> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class PlayerItem (
+@Serializable data class PlayerItem (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val total_point: Int = 0,
     @ProtoId(3) @JvmField val part_point_1: Int = 0,
@@ -591,64 +516,54 @@ class PlayerItem (
 
 }
 
-@Serializable 
-class GameConnectInfo (
+@Serializable data class GameConnectInfo (
     @ProtoId(2) @JvmField val connect_token: String? = null,
     @ProtoId(3) @JvmField val game_uuid: String? = null,
     @ProtoId(4) @JvmField val location: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ItemGainRecord (
+@Serializable data class ItemGainRecord (
     @ProtoId(1) @JvmField val item_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ItemGainRecords (
+@Serializable data class ItemGainRecords (
     @ProtoId(1) @JvmField val record_time: Int = 0,
     @ProtoId(2) @JvmField val limit_source_id: Int = 0,
     @ProtoId(3) @JvmField val records: List<ItemGainRecord> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val item_id: Int = 0,
     @ProtoId(2) @JvmField val stack: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Bag (
+@Serializable data class Bag (
     @ProtoId(1) @JvmField val items: List<Item> = emptyList(),
     @ProtoId(2) @JvmField val daily_gain_record: List<ItemGainRecords> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class BagUpdate (
+@Serializable data class BagUpdate (
     @ProtoId(1) @JvmField val update_items: List<Item> = emptyList(),
     @ProtoId(2) @JvmField val update_daily_gain_record: List<ItemGainRecords> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class RewardSlot (
+@Serializable data class RewardSlot (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class OpenResult (
+@Serializable data class OpenResult (
     @ProtoId(1) @JvmField val reward: RewardSlot? = null,
     @ProtoId(2) @JvmField val replace: RewardSlot? = null
 ) : IProtoMessage
 
-@Serializable 
-class RewardPlusResult (
+@Serializable data class RewardPlusResult (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val exchange: Exchange? = null
 ) : IProtoMessage {
-@Serializable 
-class Exchange (
+@Serializable data class Exchange (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val exchange: Int = 0
@@ -656,15 +571,13 @@ class Exchange (
 
 }
 
-@Serializable 
-class ExecuteReward (
+@Serializable data class ExecuteReward (
     @ProtoId(1) @JvmField val reward: RewardSlot? = null,
     @ProtoId(2) @JvmField val replace: RewardSlot? = null,
     @ProtoId(3) @JvmField val replace_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Mail (
+@Serializable data class Mail (
     @ProtoId(1) @JvmField val mail_id: Int = 0,
     @ProtoId(2) @JvmField val state: Int = 0,
     @ProtoId(3) @JvmField val take_attachment: Boolean = false,
@@ -676,16 +589,14 @@ class Mail (
     @ProtoId(9) @JvmField val reference_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AchievementProgress (
+@Serializable data class AchievementProgress (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val counter: Int = 0,
     @ProtoId(3) @JvmField val achieved: Boolean = false,
     @ProtoId(4) @JvmField val date: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AccountStatisticByGameMode (
+@Serializable data class AccountStatisticByGameMode (
     @ProtoId(1) @JvmField val mode: Int = 0,
     @ProtoId(2) @JvmField val game_count_sum: Int = 0,
     @ProtoId(3) @JvmField val game_final_position: List<Int> = emptyList(),
@@ -701,14 +612,12 @@ class AccountStatisticByGameMode (
     @ProtoId(13) @JvmField val score_earn_sum: Int = 0,
     @ProtoId(14) @JvmField val rank_score: List<RankScore> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class RoundEndData (
+@Serializable data class RoundEndData (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val sum: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class RankScore (
+@Serializable data class RankScore (
     @ProtoId(1) @JvmField val rank: Int = 0,
     @ProtoId(2) @JvmField val score_sum: Int = 0,
     @ProtoId(3) @JvmField val count: Int = 0
@@ -716,53 +625,45 @@ class RankScore (
 
 }
 
-@Serializable 
-class AccountStatisticByFan (
+@Serializable data class AccountStatisticByFan (
     @ProtoId(1) @JvmField val fan_id: Int = 0,
     @ProtoId(2) @JvmField val sum: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AccountFanAchieved (
+@Serializable data class AccountFanAchieved (
     @ProtoId(1) @JvmField val mahjong_category: Int = 0,
     @ProtoId(2) @JvmField val fan: List<AccountStatisticByFan> = emptyList(),
     @ProtoId(3) @JvmField val liujumanguan: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AccountDetailStatistic (
+@Serializable data class AccountDetailStatistic (
     @ProtoId(1) @JvmField val game_mode: List<AccountStatisticByGameMode> = emptyList(),
     @ProtoId(2) @JvmField val fan: List<AccountStatisticByFan> = emptyList(),
     @ProtoId(3) @JvmField val liujumanguan: Int = 0,
     @ProtoId(4) @JvmField val fan_achieved: List<AccountFanAchieved> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class AccountDetailStatisticByCategory (
+@Serializable data class AccountDetailStatisticByCategory (
     @ProtoId(1) @JvmField val category: Int = 0,
     @ProtoId(2) @JvmField val detail_statistic: AccountDetailStatistic? = null
 ) : IProtoMessage
 
-@Serializable 
-class AccountDetailStatisticV2 (
+@Serializable data class AccountDetailStatisticV2 (
     @ProtoId(1) @JvmField val friend_room_statistic: AccountDetailStatistic? = null,
     @ProtoId(2) @JvmField val rank_statistic: RankStatistic? = null,
     @ProtoId(3) @JvmField val customized_contest_statistic: CustomizedContestStatistic? = null,
     @ProtoId(4) @JvmField val leisure_match_statistic: AccountDetailStatistic? = null
 ) : IProtoMessage {
-@Serializable 
-class RankStatistic (
+@Serializable data class RankStatistic (
     @ProtoId(1) @JvmField val total_statistic: RankData? = null,
     @ProtoId(2) @JvmField val month_statistic: RankData? = null,
     @ProtoId(3) @JvmField val month_refresh_time: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class RankData (
+@Serializable data class RankData (
     @ProtoId(1) @JvmField val all_level_statistic: AccountDetailStatistic? = null,
     @ProtoId(2) @JvmField val level_data_list: List<RankLevelData> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class RankLevelData (
+@Serializable data class RankLevelData (
     @ProtoId(1) @JvmField val rank_level: Int = 0,
     @ProtoId(2) @JvmField val statistic: AccountDetailStatistic? = null
 ) : IProtoMessage
@@ -771,8 +672,7 @@ class RankLevelData (
 
 }
 
-@Serializable 
-class CustomizedContestStatistic (
+@Serializable data class CustomizedContestStatistic (
     @ProtoId(1) @JvmField val total_statistic: AccountDetailStatistic? = null,
     @ProtoId(2) @JvmField val month_statistic: AccountDetailStatistic? = null,
     @ProtoId(3) @JvmField val month_refresh_time: Int = 0
@@ -780,47 +680,40 @@ class CustomizedContestStatistic (
 
 }
 
-@Serializable 
-class AccountShiLian (
+@Serializable data class AccountShiLian (
     @ProtoId(1) @JvmField val step: Int = 0,
     @ProtoId(2) @JvmField val state: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ClientDeviceInfo (
+@Serializable data class ClientDeviceInfo (
     @ProtoId(1) @JvmField val device_type: String? = null,
     @ProtoId(2) @JvmField val os: String? = null,
     @ProtoId(3) @JvmField val os_version: String? = null,
     @ProtoId(4) @JvmField val browser: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class GamePlayerState () : IProtoMessage
+@Serializable class GamePlayerState () : IProtoMessage
 
-@Serializable 
-class Announcement (
+@Serializable data class Announcement (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val title: String? = null,
     @ProtoId(3) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class TaskProgress (
+@Serializable data class TaskProgress (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val counter: Int = 0,
     @ProtoId(3) @JvmField val achieved: Boolean = false,
     @ProtoId(4) @JvmField val rewarded: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class GameConfig (
+@Serializable data class GameConfig (
     @ProtoId(1) @JvmField val category: Int = 0,
     @ProtoId(2) @JvmField val mode: GameMode? = null,
     @ProtoId(3) @JvmField val meta: GameMetaData? = null
 ) : IProtoMessage
 
-@Serializable 
-class AccountActiveState (
+@Serializable data class AccountActiveState (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val login_time: Int = 0,
     @ProtoId(3) @JvmField val logout_time: Int = 0,
@@ -828,32 +721,27 @@ class AccountActiveState (
     @ProtoId(5) @JvmField val playing: AccountPlayingGame? = null
 ) : IProtoMessage
 
-@Serializable 
-class Friend (
+@Serializable data class Friend (
     @ProtoId(1) @JvmField val base: PlayerBaseView? = null,
     @ProtoId(2) @JvmField val state: AccountActiveState? = null
 ) : IProtoMessage
 
-@Serializable 
-class GameLiveUnit (
+@Serializable data class GameLiveUnit (
     @ProtoId(1) @JvmField val timestamp: Int = 0,
     @ProtoId(2) @JvmField val action_category: Int = 0,
     @ProtoId(3) @JvmField val action_data: ByteArray = EMPTY_BYTE_ARRAY
 ) : IProtoMessage
 
-@Serializable 
-class GameLiveSegment (
+@Serializable data class GameLiveSegment (
     @ProtoId(1) @JvmField val actions: List<GameLiveUnit> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameLiveSegmentUri (
+@Serializable data class GameLiveSegmentUri (
     @ProtoId(1) @JvmField val segment_id: Int = 0,
     @ProtoId(2) @JvmField val segment_uri: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class GameLiveHead (
+@Serializable data class GameLiveHead (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val start_time: Int = 0,
     @ProtoId(3) @JvmField val game_config: GameConfig? = null,
@@ -861,21 +749,17 @@ class GameLiveHead (
     @ProtoId(5) @JvmField val seat_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameNewRoundState (
+@Serializable data class GameNewRoundState (
     @ProtoId(1) @JvmField val seat_states: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameEndAction (
+@Serializable data class GameEndAction (
     @ProtoId(1) @JvmField val state: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class GameNoopAction () : IProtoMessage
+@Serializable class GameNoopAction () : IProtoMessage
 
-@Serializable 
-class CommentItem (
+@Serializable data class CommentItem (
     @ProtoId(1) @JvmField val comment_id: Int = 0,
     @ProtoId(2) @JvmField val timestamp: Int = 0,
     @ProtoId(3) @JvmField val commenter: PlayerBaseView? = null,
@@ -883,8 +767,7 @@ class CommentItem (
     @ProtoId(5) @JvmField val is_banned: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class RollingNotice (
+@Serializable data class RollingNotice (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val content: String? = null,
     @ProtoId(3) @JvmField val start_time: Int = 0,
@@ -892,8 +775,7 @@ class RollingNotice (
     @ProtoId(5) @JvmField val repeat_interval: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class BillingGoods (
+@Serializable data class BillingGoods (
     @ProtoId(1) @JvmField val id: String? = null,
     @ProtoId(2) @JvmField val name: String? = null,
     @ProtoId(3) @JvmField val desc: String? = null,
@@ -902,23 +784,20 @@ class BillingGoods (
     @ProtoId(6) @JvmField val resource_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class BillShortcut (
+@Serializable data class BillShortcut (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val dealPrice: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class BillingProduct (
+@Serializable data class BillingProduct (
     @ProtoId(1) @JvmField val goods: BillingGoods? = null,
     @ProtoId(2) @JvmField val currency_code: String? = null,
     @ProtoId(3) @JvmField val currency_price: Int = 0,
     @ProtoId(4) @JvmField val sort_weight: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Character (
+@Serializable data class Character (
     @ProtoId(1) @JvmField val charid: Int = 0,
     @ProtoId(2) @JvmField val level: Int = 0,
     @ProtoId(3) @JvmField val exp: Int = 0,
@@ -928,107 +807,92 @@ class Character (
     @ProtoId(7) @JvmField val extra_emoji: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class BuyRecord (
+@Serializable data class BuyRecord (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ZHPShop (
+@Serializable data class ZHPShop (
     @ProtoId(1) @JvmField val goods: List<Int> = emptyList(),
     @ProtoId(2) @JvmField val buy_records: List<BuyRecord> = emptyList(),
     @ProtoId(3) @JvmField val free_refresh: RefreshCount? = null,
     @ProtoId(4) @JvmField val cost_refresh: RefreshCount? = null
 ) : IProtoMessage {
-@Serializable 
-class RefreshCount (
+@Serializable data class RefreshCount (
     @ProtoId(1) @JvmField val count: Int = 0,
     @ProtoId(2) @JvmField val limit: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class MonthTicketInfo (
+@Serializable data class MonthTicketInfo (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val end_time: Int = 0,
     @ProtoId(3) @JvmField val last_pay_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ShopInfo (
+@Serializable data class ShopInfo (
     @ProtoId(1) @JvmField val zhp: ZHPShop? = null,
     @ProtoId(2) @JvmField val buy_records: List<BuyRecord> = emptyList(),
     @ProtoId(3) @JvmField val last_refresh_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ChangeNicknameRecord (
+@Serializable data class ChangeNicknameRecord (
     @ProtoId(1) @JvmField val from: String? = null,
     @ProtoId(2) @JvmField val to: String? = null,
     @ProtoId(3) @JvmField val time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ServerSettings (
+@Serializable data class ServerSettings (
     @ProtoId(3) @JvmField val payment_setting: PaymentSetting? = null
 ) : IProtoMessage
 
-@Serializable 
-class PaymentSetting (
+@Serializable data class PaymentSetting (
     @ProtoId(1) @JvmField val open_payment: Int = 0,
     @ProtoId(2) @JvmField val payment_info_show_type: Int = 0,
     @ProtoId(3) @JvmField val payment_info: String? = null,
     @ProtoId(4) @JvmField val wechat: WechatData? = null,
     @ProtoId(5) @JvmField val alipay: AlipayData? = null
 ) : IProtoMessage {
-@Serializable 
-class WechatData (
+@Serializable data class WechatData (
     @ProtoId(1) @JvmField val disable_create: Boolean = false,
     @ProtoId(2) @JvmField val payment_source_platform: Int = 0,
     @ProtoId(3) @JvmField val enable_credit: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class AlipayData (
+@Serializable data class AlipayData (
     @ProtoId(1) @JvmField val disable_create: Boolean = false,
     @ProtoId(2) @JvmField val payment_source_platform: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class AccountSetting (
+@Serializable data class AccountSetting (
     @ProtoId(1) @JvmField val key: Int = 0,
     @ProtoId(2) @JvmField val value: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ChestData (
+@Serializable data class ChestData (
     @ProtoId(1) @JvmField val chest_id: Int = 0,
     @ProtoId(2) @JvmField val total_open_count: Int = 0,
     @ProtoId(3) @JvmField val consume_count: Int = 0,
     @ProtoId(4) @JvmField val face_black_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ChestDataV2 (
+@Serializable data class ChestDataV2 (
     @ProtoId(1) @JvmField val chest_id: Int = 0,
     @ProtoId(2) @JvmField val total_open_count: Int = 0,
     @ProtoId(3) @JvmField val face_black_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class FaithData (
+@Serializable data class FaithData (
     @ProtoId(1) @JvmField val faith_id: Int = 0,
     @ProtoId(2) @JvmField val total_open_count: Int = 0,
     @ProtoId(3) @JvmField val consume_count: Int = 0,
     @ProtoId(4) @JvmField val modify_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class CustomizedContestBase (
+@Serializable data class CustomizedContestBase (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val contest_id: Int = 0,
     @ProtoId(3) @JvmField val contest_name: String? = null,
@@ -1041,14 +905,12 @@ class CustomizedContestBase (
     @ProtoId(10) @JvmField val contest_type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class CustomizedContestExtend (
+@Serializable data class CustomizedContestExtend (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val public_notice: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class CustomizedContestAbstract (
+@Serializable data class CustomizedContestAbstract (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val contest_id: Int = 0,
     @ProtoId(3) @JvmField val contest_name: String? = null,
@@ -1061,8 +923,7 @@ class CustomizedContestAbstract (
     @ProtoId(10) @JvmField val public_notice: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class CustomizedContestDetail (
+@Serializable data class CustomizedContestDetail (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val contest_id: Int = 0,
     @ProtoId(3) @JvmField val contest_name: String? = null,
@@ -1078,8 +939,7 @@ class CustomizedContestDetail (
     @ProtoId(13) @JvmField val observer_switch: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class CustomizedContestPlayerReport (
+@Serializable data class CustomizedContestPlayerReport (
     @ProtoId(1) @JvmField val rank_rule: Int = 0,
     @ProtoId(2) @JvmField val rank: Int = 0,
     @ProtoId(3) @JvmField val point: Int = 0,
@@ -1087,8 +947,7 @@ class CustomizedContestPlayerReport (
     @ProtoId(5) @JvmField val total_game_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class RecordGame (
+@Serializable data class RecordGame (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val start_time: Int = 0,
     @ProtoId(3) @JvmField val end_time: Int = 0,
@@ -1096,8 +955,7 @@ class RecordGame (
     @ProtoId(11) @JvmField val accounts: List<AccountInfo> = emptyList(),
     @ProtoId(12) @JvmField val result: GameEndResult? = null
 ) : IProtoMessage {
-@Serializable 
-class AccountInfo (
+@Serializable data class AccountInfo (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val seat: Int = 0,
     @ProtoId(3) @JvmField val nickname: String? = null,
@@ -1113,24 +971,20 @@ class AccountInfo (
 
 }
 
-@Serializable 
-class CustomizedContestGameStart (
+@Serializable data class CustomizedContestGameStart (
     @ProtoId(1) @JvmField val players: List<Item> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val nickname: String? = null
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class CustomizedContestGameEnd (
+@Serializable data class CustomizedContestGameEnd (
     @ProtoId(1) @JvmField val players: List<Item> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val nickname: String? = null,
     @ProtoId(3) @JvmField val total_point: Int = 0
@@ -1138,37 +992,32 @@ class Item (
 
 }
 
-@Serializable 
-class Activity (
+@Serializable data class Activity (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val start_time: Int = 0,
     @ProtoId(3) @JvmField val end_time: Int = 0,
     @ProtoId(4) @JvmField val type: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ExchangeRecord (
+@Serializable data class ExchangeRecord (
     @ProtoId(1) @JvmField val exchange_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ActivityAccumulatedPointData (
+@Serializable data class ActivityAccumulatedPointData (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val point: Int = 0,
     @ProtoId(3) @JvmField val gained_reward_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ActivityRankPointData (
+@Serializable data class ActivityRankPointData (
     @ProtoId(1) @JvmField val leaderboard_id: Int = 0,
     @ProtoId(2) @JvmField val point: Int = 0,
     @ProtoId(3) @JvmField val gained_reward: Boolean = false,
     @ProtoId(4) @JvmField val gainable_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class GameRoundHuData (
+@Serializable data class GameRoundHuData (
     @ProtoId(1) @JvmField val hupai: HuPai? = null,
     @ProtoId(2) @JvmField val fans: List<Fan> = emptyList(),
     @ProtoId(3) @JvmField val score: Int = 0,
@@ -1183,15 +1032,13 @@ class GameRoundHuData (
     @ProtoId(12) @JvmField val babei_count: Int = 0,
     @ProtoId(13) @JvmField val xuan_shang_count: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class HuPai (
+@Serializable data class HuPai (
     @ProtoId(1) @JvmField val tile: String? = null,
     @ProtoId(2) @JvmField val seat: Int = 0,
     @ProtoId(3) @JvmField val liqi: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class Fan (
+@Serializable data class Fan (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val fan: Int = 0
@@ -1199,8 +1046,7 @@ class Fan (
 
 }
 
-@Serializable 
-class GameRoundPlayerResult (
+@Serializable data class GameRoundPlayerResult (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val hands: String? = null,
     @ProtoId(3) @JvmField val ming: String? = null,
@@ -1211,22 +1057,19 @@ class GameRoundPlayerResult (
     @ProtoId(8) @JvmField val hu: GameRoundHuData? = null
 ) : IProtoMessage
 
-@Serializable 
-class GameRoundPlayer (
+@Serializable data class GameRoundPlayer (
     @ProtoId(1) @JvmField val score: Int = 0,
     @ProtoId(2) @JvmField val rank: Int = 0,
     @ProtoId(3) @JvmField val result: GameRoundPlayerResult? = null
 ) : IProtoMessage
 
-@Serializable 
-class GameRoundSnapshot (
+@Serializable data class GameRoundSnapshot (
     @ProtoId(1) @JvmField val ju: Int = 0,
     @ProtoId(2) @JvmField val ben: Int = 0,
     @ProtoId(3) @JvmField val players: List<GameRoundPlayer> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameFinalSnapshot (
+@Serializable data class GameFinalSnapshot (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val state: Int = 0,
     @ProtoId(3) @JvmField val category: Int = 0,
@@ -1242,15 +1085,13 @@ class GameFinalSnapshot (
     @ProtoId(13) @JvmField val final_players: List<FinalPlayer> = emptyList(),
     @ProtoId(14) @JvmField val afk_info: List<AFKInfo> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class CalculateParam (
+@Serializable data class CalculateParam (
     @ProtoId(1) @JvmField val init_point: Int = 0,
     @ProtoId(2) @JvmField val jingsuanyuandian: Int = 0,
     @ProtoId(3) @JvmField val rank_points: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameSeat (
+@Serializable data class GameSeat (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val account_id: Int = 0,
     @ProtoId(3) @JvmField val notify_endpoint: NetworkEndpoint? = null,
@@ -1258,8 +1099,7 @@ class GameSeat (
     @ProtoId(5) @JvmField val is_connected: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class FinalPlayer (
+@Serializable data class FinalPlayer (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val total_point: Int = 0,
     @ProtoId(3) @JvmField val part_point_1: Int = 0,
@@ -1268,8 +1108,7 @@ class FinalPlayer (
     @ProtoId(6) @JvmField val gold: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class AFKInfo (
+@Serializable data class AFKInfo (
     @ProtoId(1) @JvmField val deal_tile_count: Int = 0,
     @ProtoId(2) @JvmField val moqie_count: Int = 0,
     @ProtoId(3) @JvmField val seat: Int = 0
@@ -1277,16 +1116,14 @@ class AFKInfo (
 
 }
 
-@Serializable 
-class RecordCollectedData (
+@Serializable data class RecordCollectedData (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val remarks: String? = null,
     @ProtoId(3) @JvmField val start_time: Int = 0,
     @ProtoId(4) @JvmField val end_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ContestDetailRule (
+@Serializable data class ContestDetailRule (
     @ProtoId(5) @JvmField val init_point: Int = 0,
     @ProtoId(6) @JvmField val fandian: Int = 0,
     @ProtoId(7) @JvmField val can_jifei: Boolean = false,
@@ -1326,21 +1163,18 @@ class ContestDetailRule (
     @ProtoId(41) @JvmField val guyi_mode: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ContestDetailRuleV2 (
+@Serializable data class ContestDetailRuleV2 (
     @ProtoId(1) @JvmField val game_rule: ContestDetailRule? = null,
     @ProtoId(2) @JvmField val extra_rule: ExtraRule? = null
 ) : IProtoMessage {
-@Serializable 
-class ExtraRule (
+@Serializable data class ExtraRule (
     @ProtoId(1) @JvmField val required_level: Int = 0,
     @ProtoId(2) @JvmField val max_game_count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class GameRuleSetting (
+@Serializable data class GameRuleSetting (
     @ProtoId(1) @JvmField val round_type: Int = 0,
     @ProtoId(2) @JvmField val shiduan: Boolean = false,
     @ProtoId(3) @JvmField val dora_count: Int = 0,
@@ -2148,27 +1982,23 @@ class Lobby {
     }
 }
 
-@Serializable 
-class ResConnectionInfo (
+@Serializable data class ResConnectionInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val client_endpoint: NetworkEndpoint? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqSignupAccount (
+@Serializable data class ReqSignupAccount (
     @ProtoId(1) @JvmField val account: String? = null,
     @ProtoId(2) @JvmField val password: String? = null,
     @ProtoId(3) @JvmField val code: String? = null,
     @ProtoId(4) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResSignupAccount (
+@Serializable data class ResSignupAccount (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqLogin (
+@Serializable data class ReqLogin (
     @ProtoId(1) @JvmField val account: String? = null,
     @ProtoId(2) @JvmField val password: String? = null,
     @ProtoId(3) @JvmField val reconnect: Boolean = false,
@@ -2180,8 +2010,7 @@ class ReqLogin (
     @ProtoId(9) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResLogin (
+@Serializable data class ResLogin (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val account_id: Int = 0,
     @ProtoId(3) @JvmField val account: Account? = null,
@@ -2192,8 +2021,7 @@ class ResLogin (
     @ProtoId(8) @JvmField val is_id_card_authed: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqEmailLogin (
+@Serializable data class ReqEmailLogin (
     @ProtoId(1) @JvmField val email: String? = null,
     @ProtoId(2) @JvmField val password: String? = null,
     @ProtoId(3) @JvmField val reconnect: Boolean = false,
@@ -2204,116 +2032,98 @@ class ReqEmailLogin (
     @ProtoId(8) @JvmField val currency_platforms: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqBindAccount (
+@Serializable data class ReqBindAccount (
     @ProtoId(1) @JvmField val account: String? = null,
     @ProtoId(2) @JvmField val password: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreatePhoneVerifyCode (
+@Serializable data class ReqCreatePhoneVerifyCode (
     @ProtoId(1) @JvmField val phone: String? = null,
     @ProtoId(2) @JvmField val usage: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateEmailVerifyCode (
+@Serializable data class ReqCreateEmailVerifyCode (
     @ProtoId(1) @JvmField val email: String? = null,
     @ProtoId(2) @JvmField val usage: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqVerifyCodeForSecure (
+@Serializable data class ReqVerifyCodeForSecure (
     @ProtoId(1) @JvmField val code: String? = null,
     @ProtoId(2) @JvmField val operation: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResVerfiyCodeForSecure (
+@Serializable data class ResVerfiyCodeForSecure (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val secure_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqBindPhoneNumber (
+@Serializable data class ReqBindPhoneNumber (
     @ProtoId(1) @JvmField val code: String? = null,
     @ProtoId(2) @JvmField val phone: String? = null,
     @ProtoId(3) @JvmField val password: String? = null,
     @ProtoId(4) @JvmField val multi_bind_version: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqUnbindPhoneNumber (
+@Serializable data class ReqUnbindPhoneNumber (
     @ProtoId(1) @JvmField val code: String? = null,
     @ProtoId(2) @JvmField val phone: String? = null,
     @ProtoId(3) @JvmField val password: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchPhoneLoginBind (
+@Serializable data class ResFetchPhoneLoginBind (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val phone_login: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreatePhoneLoginBind (
+@Serializable data class ReqCreatePhoneLoginBind (
     @ProtoId(1) @JvmField val password: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqBindEmail (
+@Serializable data class ReqBindEmail (
     @ProtoId(1) @JvmField val email: String? = null,
     @ProtoId(2) @JvmField val code: String? = null,
     @ProtoId(3) @JvmField val password: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqModifyPassword (
+@Serializable data class ReqModifyPassword (
     @ProtoId(1) @JvmField val new_password: String? = null,
     @ProtoId(2) @JvmField val old_password: String? = null,
     @ProtoId(3) @JvmField val secure_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqOauth2Auth (
+@Serializable data class ReqOauth2Auth (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val code: String? = null,
     @ProtoId(3) @JvmField val uid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResOauth2Auth (
+@Serializable data class ResOauth2Auth (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqOauth2Check (
+@Serializable data class ReqOauth2Check (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResOauth2Check (
+@Serializable data class ResOauth2Check (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val has_account: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqOauth2Signup (
+@Serializable data class ReqOauth2Signup (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val access_token: String? = null,
     @ProtoId(3) @JvmField val email: String? = null,
     @ProtoId(4) @JvmField val advertise_str: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResOauth2Signup (
+@Serializable data class ResOauth2Signup (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqOauth2Login (
+@Serializable data class ReqOauth2Login (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val access_token: String? = null,
     @ProtoId(3) @JvmField val reconnect: Boolean = false,
@@ -2323,488 +2133,403 @@ class ReqOauth2Login (
     @ProtoId(8) @JvmField val currency_platforms: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqDMMPreLogin (
+@Serializable data class ReqDMMPreLogin (
     @ProtoId(1) @JvmField val finish_url: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResDMMPreLogin (
+@Serializable data class ResDMMPreLogin (
     @ProtoId(1) @JvmField val parameter: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqLogout () : IProtoMessage
+@Serializable class ReqLogout () : IProtoMessage
 
-@Serializable 
-class ResLogout (
+@Serializable data class ResLogout (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqHeatBeat (
+@Serializable data class ReqHeatBeat (
     @ProtoId(1) @JvmField val no_operation_counter: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqLoginBeat (
+@Serializable data class ReqLoginBeat (
     @ProtoId(1) @JvmField val contract: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqJoinMatchQueue (
+@Serializable data class ReqJoinMatchQueue (
     @ProtoId(1) @JvmField val match_mode: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCancelMatchQueue (
+@Serializable data class ReqCancelMatchQueue (
     @ProtoId(1) @JvmField val match_mode: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqAccountInfo (
+@Serializable data class ReqAccountInfo (
     @ProtoId(1) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountInfo (
+@Serializable data class ResAccountInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val account: Account? = null,
     @ProtoId(3) @JvmField val room: Room? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateNickname (
+@Serializable data class ReqCreateNickname (
     @ProtoId(1) @JvmField val nickname: String? = null,
     @ProtoId(2) @JvmField val advertise_str: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqModifyNickname (
+@Serializable data class ReqModifyNickname (
     @ProtoId(1) @JvmField val nickname: String? = null,
     @ProtoId(2) @JvmField val use_item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqModifyBirthday (
+@Serializable data class ReqModifyBirthday (
     @ProtoId(1) @JvmField val birthday: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResSelfRoom (
+@Serializable data class ResSelfRoom (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val room: Room? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateRoom (
+@Serializable data class ReqCreateRoom (
     @ProtoId(1) @JvmField val player_count: Int = 0,
     @ProtoId(2) @JvmField val mode: GameMode? = null,
     @ProtoId(3) @JvmField val public_live: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateRoom (
+@Serializable data class ResCreateRoom (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val room: Room? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqJoinRoom (
+@Serializable data class ReqJoinRoom (
     @ProtoId(1) @JvmField val room_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResJoinRoom (
+@Serializable data class ResJoinRoom (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val room: Room? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqRoomReady (
+@Serializable data class ReqRoomReady (
     @ProtoId(1) @JvmField val ready: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqRoomDressing (
+@Serializable data class ReqRoomDressing (
     @ProtoId(1) @JvmField val dressing: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqRoomStart () : IProtoMessage
+@Serializable class ReqRoomStart () : IProtoMessage
 
-@Serializable 
-class ReqRoomKick (
+@Serializable data class ReqRoomKick (
     @ProtoId(1) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqModifyRoom (
+@Serializable data class ReqModifyRoom (
     @ProtoId(1) @JvmField val robot_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqChangeAvatar (
+@Serializable data class ReqChangeAvatar (
     @ProtoId(1) @JvmField val avatar_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqAccountStatisticInfo (
+@Serializable data class ReqAccountStatisticInfo (
     @ProtoId(1) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountStatisticInfo (
+@Serializable data class ResAccountStatisticInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val statistic_data: List<AccountStatisticData> = emptyList(),
     @ProtoId(3) @JvmField val detail_data: AccountDetailStatisticV2? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountCharacterInfo (
+@Serializable data class ResAccountCharacterInfo (
     @ProtoId(1) @JvmField val unlock_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqShopPurchase (
+@Serializable data class ReqShopPurchase (
     @ProtoId(1) @JvmField val type: String? = null,
     @ProtoId(2) @JvmField val id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResShopPurchase (
+@Serializable data class ResShopPurchase (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val update: AccountUpdate? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameRecord (
+@Serializable data class ReqGameRecord (
     @ProtoId(1) @JvmField val game_uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResGameRecord (
+@Serializable data class ResGameRecord (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(3) @JvmField val head: RecordGame? = null,
     @ProtoId(4) @JvmField val data: ByteArray = EMPTY_BYTE_ARRAY,
     @ProtoId(5) @JvmField val data_url: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameRecordList (
+@Serializable data class ReqGameRecordList (
     @ProtoId(1) @JvmField val start: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResGameRecordList (
+@Serializable data class ResGameRecordList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val total_count: Int = 0,
     @ProtoId(3) @JvmField val record_list: List<RecordGame> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResCollectedGameRecordList (
+@Serializable data class ResCollectedGameRecordList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val record_list: List<RecordCollectedData> = emptyList(),
     @ProtoId(3) @JvmField val record_collect_limit: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameRecordsDetail (
+@Serializable data class ReqGameRecordsDetail (
     @ProtoId(1) @JvmField val uuid_list: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResGameRecordsDetail (
+@Serializable data class ResGameRecordsDetail (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val record_list: List<RecordGame> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqAddCollectedGameRecord (
+@Serializable data class ReqAddCollectedGameRecord (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val remarks: String? = null,
     @ProtoId(3) @JvmField val start_time: Int = 0,
     @ProtoId(4) @JvmField val end_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResAddCollectedGameRecord (
+@Serializable data class ResAddCollectedGameRecord (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqRemoveCollectedGameRecord (
+@Serializable data class ReqRemoveCollectedGameRecord (
     @ProtoId(1) @JvmField val uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResRemoveCollectedGameRecord (
+@Serializable data class ResRemoveCollectedGameRecord (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqChangeCollectedGameRecordRemarks (
+@Serializable data class ReqChangeCollectedGameRecordRemarks (
     @ProtoId(1) @JvmField val uuid: String? = null,
     @ProtoId(2) @JvmField val remarks: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResChangeCollectedGameRecordRemarks (
+@Serializable data class ResChangeCollectedGameRecordRemarks (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqLevelLeaderboard (
+@Serializable data class ReqLevelLeaderboard (
     @ProtoId(1) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResLevelLeaderboard (
+@Serializable data class ResLevelLeaderboard (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val items: List<Item> = emptyList(),
     @ProtoId(3) @JvmField val self_rank: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val level: AccountLevel? = null
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqMultiAccountId (
+@Serializable data class ReqMultiAccountId (
     @ProtoId(1) @JvmField val account_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResMultiAccountBrief (
+@Serializable data class ResMultiAccountBrief (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val players: List<PlayerBaseView> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResFriendList (
+@Serializable data class ResFriendList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val friends: List<Friend> = emptyList(),
     @ProtoId(3) @JvmField val friend_max_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFriendApplyList (
+@Serializable data class ResFriendApplyList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val applies: List<FriendApply> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class FriendApply (
+@Serializable data class FriendApply (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val apply_time: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqApplyFriend (
+@Serializable data class ReqApplyFriend (
     @ProtoId(1) @JvmField val target_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqHandleFriendApply (
+@Serializable data class ReqHandleFriendApply (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val method: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqRemoveFriend (
+@Serializable data class ReqRemoveFriend (
     @ProtoId(1) @JvmField val target_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqSearchAccountByPattern (
+@Serializable data class ReqSearchAccountByPattern (
     @ProtoId(1) @JvmField val search_next: Boolean = false,
     @ProtoId(2) @JvmField val pattern: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResSearchAccountByPattern (
+@Serializable data class ResSearchAccountByPattern (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val is_finished: Boolean = false,
     @ProtoId(3) @JvmField val match_accounts: List<Int> = emptyList(),
     @ProtoId(4) @JvmField val decode_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqAccountList (
+@Serializable data class ReqAccountList (
     @ProtoId(1) @JvmField val account_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountStates (
+@Serializable data class ResAccountStates (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val states: List<AccountActiveState> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqSearchAccountById (
+@Serializable data class ReqSearchAccountById (
     @ProtoId(1) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResSearchAccountById (
+@Serializable data class ResSearchAccountById (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val player: PlayerBaseView? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResBagInfo (
+@Serializable data class ResBagInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val bag: Bag? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqUseBagItem (
+@Serializable data class ReqUseBagItem (
     @ProtoId(1) @JvmField val item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqOpenManualItem (
+@Serializable data class ReqOpenManualItem (
     @ProtoId(1) @JvmField val item_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val select_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqOpenRandomRewardItem (
+@Serializable data class ReqOpenRandomRewardItem (
     @ProtoId(1) @JvmField val item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResOpenRandomRewardItem (
+@Serializable data class ResOpenRandomRewardItem (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val results: List<OpenResult> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqComposeShard (
+@Serializable data class ReqComposeShard (
     @ProtoId(1) @JvmField val item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResAnnouncement (
+@Serializable data class ResAnnouncement (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val announcements: List<Announcement> = emptyList(),
     @ProtoId(3) @JvmField val sort: List<Int> = emptyList(),
     @ProtoId(4) @JvmField val read_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResMailInfo (
+@Serializable data class ResMailInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val mails: List<Mail> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqReadMail (
+@Serializable data class ReqReadMail (
     @ProtoId(1) @JvmField val mail_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqDeleteMail (
+@Serializable data class ReqDeleteMail (
     @ProtoId(1) @JvmField val mail_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqTakeAttachment (
+@Serializable data class ReqTakeAttachment (
     @ProtoId(1) @JvmField val mail_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResAchievement (
+@Serializable data class ResAchievement (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val progresses: List<AchievementProgress> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResTitleList (
+@Serializable data class ResTitleList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val title_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqUseTitle (
+@Serializable data class ReqUseTitle (
     @ProtoId(1) @JvmField val title: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqBuyShiLian (
+@Serializable data class ReqBuyShiLian (
     @ProtoId(1) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpdateClientValue (
+@Serializable data class ReqUpdateClientValue (
     @ProtoId(1) @JvmField val key: Int = 0,
     @ProtoId(2) @JvmField val value: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResClientValue (
+@Serializable data class ResClientValue (
     @ProtoId(1) @JvmField val datas: List<Value> = emptyList(),
     @ProtoId(2) @JvmField val recharged_count: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class Value (
+@Serializable data class Value (
     @ProtoId(1) @JvmField val key: Int = 0,
     @ProtoId(2) @JvmField val value: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqClientMessage (
+@Serializable data class ReqClientMessage (
     @ProtoId(1) @JvmField val timestamp: Int = 0,
     @ProtoId(2) @JvmField val message: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCurrentMatchInfo (
+@Serializable data class ReqCurrentMatchInfo (
     @ProtoId(1) @JvmField val mode_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResCurrentMatchInfo (
+@Serializable data class ResCurrentMatchInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val matches: List<CurrentMatchInfo> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class CurrentMatchInfo (
+@Serializable data class CurrentMatchInfo (
     @ProtoId(1) @JvmField val mode_id: Int = 0,
     @ProtoId(2) @JvmField val playing_count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqUserComplain (
+@Serializable data class ReqUserComplain (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqReadAnnouncement (
+@Serializable data class ReqReadAnnouncement (
     @ProtoId(1) @JvmField val announcement_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResReviveCoinInfo (
+@Serializable data class ResReviveCoinInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val has_gained: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ResDailyTask (
+@Serializable data class ResDailyTask (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val progresses: List<TaskProgress> = emptyList(),
     @ProtoId(3) @JvmField val has_refresh_count: Boolean = false,
@@ -2812,43 +2537,36 @@ class ResDailyTask (
     @ProtoId(5) @JvmField val refresh_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqRefreshDailyTask (
+@Serializable data class ReqRefreshDailyTask (
     @ProtoId(1) @JvmField val task_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResRefreshDailyTask (
+@Serializable data class ResRefreshDailyTask (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val progress: TaskProgress? = null,
     @ProtoId(3) @JvmField val refresh_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqUseGiftCode (
+@Serializable data class ReqUseGiftCode (
     @ProtoId(1) @JvmField val code: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResUseGiftCode (
+@Serializable data class ResUseGiftCode (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(6) @JvmField val rewards: List<RewardSlot> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqSendClientMessage (
+@Serializable data class ReqSendClientMessage (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameLiveInfo (
+@Serializable data class ReqGameLiveInfo (
     @ProtoId(1) @JvmField val game_uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResGameLiveInfo (
+@Serializable data class ResGameLiveInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val left_start_seconds: Int = 0,
     @ProtoId(3) @JvmField val live_head: GameLiveHead? = null,
@@ -2856,14 +2574,12 @@ class ResGameLiveInfo (
     @ProtoId(5) @JvmField val now_millisecond: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameLiveLeftSegment (
+@Serializable data class ReqGameLiveLeftSegment (
     @ProtoId(1) @JvmField val game_uuid: String? = null,
     @ProtoId(2) @JvmField val last_segment_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResGameLiveLeftSegment (
+@Serializable data class ResGameLiveLeftSegment (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val live_state: Int = 0,
     @ProtoId(4) @JvmField val segments: List<GameLiveSegmentUri> = emptyList(),
@@ -2871,154 +2587,129 @@ class ResGameLiveLeftSegment (
     @ProtoId(6) @JvmField val segment_end_millisecond: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqGameLiveList (
+@Serializable data class ReqGameLiveList (
     @ProtoId(1) @JvmField val filter_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResGameLiveList (
+@Serializable data class ResGameLiveList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val live_list: List<GameLiveHead> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResCommentSetting (
+@Serializable data class ResCommentSetting (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val comment_allow: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpdateCommentSetting (
+@Serializable data class ReqUpdateCommentSetting (
     @ProtoId(1) @JvmField val comment_allow: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCommentList (
+@Serializable data class ReqFetchCommentList (
     @ProtoId(1) @JvmField val target_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCommentList (
+@Serializable data class ResFetchCommentList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val comment_allow: Int = 0,
     @ProtoId(3) @JvmField val comment_id_list: List<Int> = emptyList(),
     @ProtoId(4) @JvmField val last_read_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCommentContent (
+@Serializable data class ReqFetchCommentContent (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val comment_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCommentContent (
+@Serializable data class ResFetchCommentContent (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val comments: List<CommentItem> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqLeaveComment (
+@Serializable data class ReqLeaveComment (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqDeleteComment (
+@Serializable data class ReqDeleteComment (
     @ProtoId(1) @JvmField val target_id: Int = 0,
     @ProtoId(2) @JvmField val delete_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpdateReadComment (
+@Serializable data class ReqUpdateReadComment (
     @ProtoId(1) @JvmField val read_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqRollingNotice (
+@Serializable data class ReqRollingNotice (
     @ProtoId(1) @JvmField val notice: RollingNotice? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResServerTime (
+@Serializable data class ResServerTime (
     @ProtoId(1) @JvmField val server_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqPlatformBillingProducts (
+@Serializable data class ReqPlatformBillingProducts (
     @ProtoId(1) @JvmField val shelves_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResPlatformBillingProducts (
+@Serializable data class ResPlatformBillingProducts (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val products: List<BillingProduct> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateBillingOrder (
+@Serializable data class ReqCreateBillingOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val payment_platform: Int = 0,
     @ProtoId(3) @JvmField val client_type: Int = 0,
     @ProtoId(4) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateBillingOrder (
+@Serializable data class ResCreateBillingOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqSolveGooglePlayOrder (
+@Serializable data class ReqSolveGooglePlayOrder (
     @ProtoId(2) @JvmField val inapp_purchase_data: String? = null,
     @ProtoId(3) @JvmField val inapp_data_signature: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqSolveGooglePlayOrderV3 (
+@Serializable data class ReqSolveGooglePlayOrderV3 (
     @ProtoId(1) @JvmField val order_id: String? = null,
     @ProtoId(2) @JvmField val transaction_id: String? = null,
     @ProtoId(3) @JvmField val token: String? = null,
     @ProtoId(4) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCancelGooglePlayOrder (
+@Serializable data class ReqCancelGooglePlayOrder (
     @ProtoId(1) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateWechatNativeOrder (
+@Serializable data class ReqCreateWechatNativeOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
     @ProtoId(4) @JvmField val account_ip: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateWechatNativeOrder (
+@Serializable data class ResCreateWechatNativeOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val qrcode_buffer: String? = null,
     @ProtoId(3) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateWechatAppOrder (
+@Serializable data class ReqCreateWechatAppOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
     @ProtoId(4) @JvmField val account_ip: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateWechatAppOrder (
+@Serializable data class ResCreateWechatAppOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val call_wechat_app_param: CallWechatAppParam? = null
 ) : IProtoMessage {
-@Serializable 
-class CallWechatAppParam (
+@Serializable data class CallWechatAppParam (
     @ProtoId(1) @JvmField val appid: String? = null,
     @ProtoId(2) @JvmField val partnerid: String? = null,
     @ProtoId(3) @JvmField val prepayid: String? = null,
@@ -3030,8 +2721,7 @@ class CallWechatAppParam (
 
 }
 
-@Serializable 
-class ReqCreateAlipayOrder (
+@Serializable data class ReqCreateAlipayOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3039,42 +2729,36 @@ class ReqCreateAlipayOrder (
     @ProtoId(5) @JvmField val return_url: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateAlipayOrder (
+@Serializable data class ResCreateAlipayOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val alipay_url: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateAlipayScanOrder (
+@Serializable data class ReqCreateAlipayScanOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateAlipayScanOrder (
+@Serializable data class ResCreateAlipayScanOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val qrcode_buffer: String? = null,
     @ProtoId(3) @JvmField val order_id: String? = null,
     @ProtoId(4) @JvmField val qr_code: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateAlipayAppOrder (
+@Serializable data class ReqCreateAlipayAppOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateAlipayAppOrder (
+@Serializable data class ResCreateAlipayAppOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val alipay_url: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPCreditCardOrder (
+@Serializable data class ReqCreateJPCreditCardOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3082,14 +2766,12 @@ class ReqCreateJPCreditCardOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPCreditCardOrder (
+@Serializable data class ResCreateJPCreditCardOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPPaypalOrder (
+@Serializable data class ReqCreateJPPaypalOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3097,14 +2779,12 @@ class ReqCreateJPPaypalOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPPaypalOrder (
+@Serializable data class ResCreateJPPaypalOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPAuOrder (
+@Serializable data class ReqCreateJPAuOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3112,14 +2792,12 @@ class ReqCreateJPAuOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPAuOrder (
+@Serializable data class ResCreateJPAuOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPDocomoOrder (
+@Serializable data class ReqCreateJPDocomoOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3127,14 +2805,12 @@ class ReqCreateJPDocomoOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPDocomoOrder (
+@Serializable data class ResCreateJPDocomoOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPWebMoneyOrder (
+@Serializable data class ReqCreateJPWebMoneyOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3142,14 +2818,12 @@ class ReqCreateJPWebMoneyOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPWebMoneyOrder (
+@Serializable data class ResCreateJPWebMoneyOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateJPSoftbankOrder (
+@Serializable data class ReqCreateJPSoftbankOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3157,28 +2831,24 @@ class ReqCreateJPSoftbankOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateJPSoftbankOrder (
+@Serializable data class ResCreateJPSoftbankOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateYostarOrder (
+@Serializable data class ReqCreateYostarOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
     @ProtoId(4) @JvmField val order_type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateYostarOrder (
+@Serializable data class ResCreateYostarOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateENPaypalOrder (
+@Serializable data class ReqCreateENPaypalOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3186,14 +2856,12 @@ class ReqCreateENPaypalOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateENPaypalOrder (
+@Serializable data class ResCreateENPaypalOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateENJCBOrder (
+@Serializable data class ReqCreateENJCBOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3201,14 +2869,12 @@ class ReqCreateENJCBOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateENJCBOrder (
+@Serializable data class ResCreateENJCBOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateENMasterCardOrder (
+@Serializable data class ReqCreateENMasterCardOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3216,14 +2882,12 @@ class ReqCreateENMasterCardOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateENMasterCardOrder (
+@Serializable data class ResCreateENMasterCardOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateENVisaOrder (
+@Serializable data class ReqCreateENVisaOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3231,14 +2895,12 @@ class ReqCreateENVisaOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateENVisaOrder (
+@Serializable data class ResCreateENVisaOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateENAlipayOrder (
+@Serializable data class ReqCreateENAlipayOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
@@ -3246,21 +2908,18 @@ class ReqCreateENAlipayOrder (
     @ProtoId(5) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateENAlipayOrder (
+@Serializable data class ResCreateENAlipayOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateDMMOrder (
+@Serializable data class ReqCreateDMMOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val account_id: Int = 0,
     @ProtoId(3) @JvmField val client_type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateDmmOrder (
+@Serializable data class ResCreateDmmOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null,
     @ProtoId(3) @JvmField val transaction_id: String? = null,
@@ -3271,109 +2930,93 @@ class ResCreateDmmOrder (
     @ProtoId(10) @JvmField val dmm_app_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateIAPOrder (
+@Serializable data class ReqCreateIAPOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0,
     @ProtoId(4) @JvmField val access_token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateIAPOrder (
+@Serializable data class ResCreateIAPOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqVerificationIAPOrder (
+@Serializable data class ReqVerificationIAPOrder (
     @ProtoId(1) @JvmField val order_id: String? = null,
     @ProtoId(2) @JvmField val transaction_id: String? = null,
     @ProtoId(3) @JvmField val receipt_data: String? = null,
     @ProtoId(4) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResVerificationIAPOrder (
+@Serializable data class ResVerificationIAPOrder (
     @ProtoId(1) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqCreateMyCardOrder (
+@Serializable data class ReqCreateMyCardOrder (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val client_type: Int = 0,
     @ProtoId(3) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateMyCardOrder (
+@Serializable data class ResCreateMyCardOrder (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val auth_code: String? = null,
     @ProtoId(3) @JvmField val order_id: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqVerifyMyCardOrder (
+@Serializable data class ReqVerifyMyCardOrder (
     @ProtoId(1) @JvmField val order_id: String? = null,
     @ProtoId(2) @JvmField val account_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqOpenChest (
+@Serializable data class ReqOpenChest (
     @ProtoId(1) @JvmField val chest_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val use_ticket: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ResOpenChest (
+@Serializable data class ResOpenChest (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val results: List<OpenResult> = emptyList(),
     @ProtoId(3) @JvmField val total_open_count: Int = 0,
     @ProtoId(4) @JvmField val faith_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqBuyFromChestShop (
+@Serializable data class ReqBuyFromChestShop (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResBuyFromChestShop (
+@Serializable data class ResBuyFromChestShop (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val chest_id: Int = 0,
     @ProtoId(3) @JvmField val consume_count: Int = 0,
     @ProtoId(4) @JvmField val faith_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResDailySignInInfo (
+@Serializable data class ResDailySignInInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val sign_in_days: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqDoActivitySignIn (
+@Serializable data class ReqDoActivitySignIn (
     @ProtoId(2) @JvmField val activity_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResDoActivitySignIn (
+@Serializable data class ResDoActivitySignIn (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val rewards: List<RewardData> = emptyList(),
     @ProtoId(3) @JvmField val sign_in_count: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class RewardData (
+@Serializable data class RewardData (
     @ProtoId(1) @JvmField val resource_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ResCharacterInfo (
+@Serializable data class ResCharacterInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val characters: List<Character> = emptyList(),
     @ProtoId(3) @JvmField val skins: List<Int> = emptyList(),
@@ -3384,387 +3027,322 @@ class ResCharacterInfo (
     @ProtoId(8) @JvmField val rewarded_endings: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqChangeMainCharacter (
+@Serializable data class ReqChangeMainCharacter (
     @ProtoId(1) @JvmField val character_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqChangeCharacterSkin (
+@Serializable data class ReqChangeCharacterSkin (
     @ProtoId(1) @JvmField val character_id: Int = 0,
     @ProtoId(2) @JvmField val skin: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqChangeCharacterView (
+@Serializable data class ReqChangeCharacterView (
     @ProtoId(1) @JvmField val character_id: Int = 0,
     @ProtoId(2) @JvmField val slot: Int = 0,
     @ProtoId(3) @JvmField val item_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqSendGiftToCharacter (
+@Serializable data class ReqSendGiftToCharacter (
     @ProtoId(1) @JvmField val character_id: Int = 0,
     @ProtoId(2) @JvmField val gifts: List<Gift> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Gift (
+@Serializable data class Gift (
     @ProtoId(1) @JvmField val item_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ResSendGiftToCharacter (
+@Serializable data class ResSendGiftToCharacter (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val level: Int = 0,
     @ProtoId(3) @JvmField val exp: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqSellItem (
+@Serializable data class ReqSellItem (
     @ProtoId(1) @JvmField val sells: List<Item> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val item_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ResCommonView (
+@Serializable data class ResCommonView (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val slots: List<Slot> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Slot (
+@Serializable data class Slot (
     @ProtoId(1) @JvmField val slot: Int = 0,
     @ProtoId(2) @JvmField val value: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqChangeCommonView (
+@Serializable data class ReqChangeCommonView (
     @ProtoId(1) @JvmField val slot: Int = 0,
     @ProtoId(2) @JvmField val value: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqSaveCommonViews (
+@Serializable data class ReqSaveCommonViews (
     @ProtoId(1) @JvmField val views: List<ViewSlot> = emptyList(),
     @ProtoId(2) @JvmField val save_index: Int = 0,
     @ProtoId(3) @JvmField val is_use: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqCommonViews (
+@Serializable data class ReqCommonViews (
     @ProtoId(1) @JvmField val index: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResCommonViews (
+@Serializable data class ResCommonViews (
     @ProtoId(1) @JvmField val views: List<ViewSlot> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResAllcommonViews (
+@Serializable data class ResAllcommonViews (
     @ProtoId(1) @JvmField val views: List<Views> = emptyList(),
     @ProtoId(2) @JvmField val use: Int = 0,
     @ProtoId(3) @JvmField val error: Error? = null
 ) : IProtoMessage {
-@Serializable 
-class Views (
+@Serializable data class Views (
     @ProtoId(1) @JvmField val values: List<ViewSlot> = emptyList(),
     @ProtoId(2) @JvmField val index: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqUseCommonView (
+@Serializable data class ReqUseCommonView (
     @ProtoId(3) @JvmField val index: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpgradeCharacter (
+@Serializable data class ReqUpgradeCharacter (
     @ProtoId(1) @JvmField val character_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResUpgradeCharacter (
+@Serializable data class ResUpgradeCharacter (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val character: Character? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqFinishedEnding (
+@Serializable data class ReqFinishedEnding (
     @ProtoId(1) @JvmField val character_id: Int = 0,
     @ProtoId(2) @JvmField val story_id: Int = 0,
     @ProtoId(3) @JvmField val ending_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqGMCommand (
+@Serializable data class ReqGMCommand (
     @ProtoId(1) @JvmField val command: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResShopInfo (
+@Serializable data class ResShopInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val shop_info: ShopInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqBuyFromShop (
+@Serializable data class ReqBuyFromShop (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val bill_short_cut: List<BillShortcut> = emptyList(),
     @ProtoId(4) @JvmField val deal_price: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResBuyFromShop (
+@Serializable data class ResBuyFromShop (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val rewards: List<RewardSlot> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqBuyFromZHP (
+@Serializable data class ReqBuyFromZHP (
     @ProtoId(1) @JvmField val goods_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqPayMonthTicket (
+@Serializable data class ReqPayMonthTicket (
     @ProtoId(1) @JvmField val ticket_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResPayMonthTicket (
+@Serializable data class ResPayMonthTicket (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val resource_id: Int = 0,
     @ProtoId(3) @JvmField val resource_count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqReshZHPShop (
+@Serializable data class ReqReshZHPShop (
     @ProtoId(1) @JvmField val free_refresh: Int = 0,
     @ProtoId(2) @JvmField val cost_refresh: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResRefreshZHPShop (
+@Serializable data class ResRefreshZHPShop (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val zhp: ZHPShop? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResMonthTicketInfo (
+@Serializable data class ResMonthTicketInfo (
     @ProtoId(1) @JvmField val month_ticket_info: List<MonthTicketInfo> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqExchangeCurrency (
+@Serializable data class ReqExchangeCurrency (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResServerSettings (
+@Serializable data class ResServerSettings (
     @ProtoId(1) @JvmField val settings: ServerSettings? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountSettings (
+@Serializable data class ResAccountSettings (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val settings: List<AccountSetting> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpdateAccountSettings (
+@Serializable data class ReqUpdateAccountSettings (
     @ProtoId(1) @JvmField val setting: AccountSetting? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResModNicknameTime (
+@Serializable data class ResModNicknameTime (
     @ProtoId(1) @JvmField val last_mod_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResMisc (
+@Serializable data class ResMisc (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val recharged_list: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val faiths: List<MiscFaithData> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class MiscFaithData (
+@Serializable data class MiscFaithData (
     @ProtoId(1) @JvmField val faith_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqModifySignature (
+@Serializable data class ReqModifySignature (
     @ProtoId(1) @JvmField val signature: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResIDCardInfo (
+@Serializable data class ResIDCardInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val is_authed: Boolean = false,
     @ProtoId(3) @JvmField val country: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqUpdateIDCardInfo (
+@Serializable data class ReqUpdateIDCardInfo (
     @ProtoId(1) @JvmField val fullname: String? = null,
     @ProtoId(2) @JvmField val card_no: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResVipReward (
+@Serializable data class ResVipReward (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val gained_vip_levels: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqGainVipReward (
+@Serializable data class ReqGainVipReward (
     @ProtoId(1) @JvmField val vip_level: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestList (
+@Serializable data class ReqFetchCustomizedContestList (
     @ProtoId(1) @JvmField val start: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestList (
+@Serializable data class ResFetchCustomizedContestList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val contests: List<CustomizedContestBase> = emptyList(),
     @ProtoId(3) @JvmField val follow_contests: List<CustomizedContestBase> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestExtendInfo (
+@Serializable data class ReqFetchCustomizedContestExtendInfo (
     @ProtoId(1) @JvmField val uid_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestExtendInfo (
+@Serializable data class ResFetchCustomizedContestExtendInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val extend_list: List<CustomizedContestExtend> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestAuthInfo (
+@Serializable data class ReqFetchCustomizedContestAuthInfo (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestAuthInfo (
+@Serializable data class ResFetchCustomizedContestAuthInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val observer_level: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqEnterCustomizedContest (
+@Serializable data class ReqEnterCustomizedContest (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResEnterCustomizedContest (
+@Serializable data class ResEnterCustomizedContest (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val detail_info: CustomizedContestDetail? = null,
     @ProtoId(3) @JvmField val player_report: CustomizedContestPlayerReport? = null,
     @ProtoId(4) @JvmField val is_followed: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestOnlineInfo (
+@Serializable data class ReqFetchCustomizedContestOnlineInfo (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestOnlineInfo (
+@Serializable data class ResFetchCustomizedContestOnlineInfo (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val online_player: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestByContestId (
+@Serializable data class ReqFetchCustomizedContestByContestId (
     @ProtoId(1) @JvmField val contest_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestByContestId (
+@Serializable data class ResFetchCustomizedContestByContestId (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val contest_info: CustomizedContestAbstract? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqStartCustomizedContest (
+@Serializable data class ReqStartCustomizedContest (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqJoinCustomizedContestChatRoom (
+@Serializable data class ReqJoinCustomizedContestChatRoom (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResJoinCustomizedContestChatRoom (
+@Serializable data class ResJoinCustomizedContestChatRoom (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val chat_history: ByteArray = EMPTY_BYTE_ARRAY
 ) : IProtoMessage
 
-@Serializable 
-class ReqSayChatMessage (
+@Serializable data class ReqSayChatMessage (
     @ProtoId(1) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestGameLiveList (
+@Serializable data class ReqFetchCustomizedContestGameLiveList (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestGameLiveList (
+@Serializable data class ResFetchCustomizedContestGameLiveList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val live_list: List<GameLiveHead> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchCustomizedContestGameRecords (
+@Serializable data class ReqFetchCustomizedContestGameRecords (
     @ProtoId(1) @JvmField val unique_id: Int = 0,
     @ProtoId(2) @JvmField val last_index: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchCustomizedContestGameRecords (
+@Serializable data class ResFetchCustomizedContestGameRecords (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val next_index: Int = 0,
     @ProtoId(3) @JvmField val record_list: List<RecordGame> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqTargetCustomizedContest (
+@Serializable data class ReqTargetCustomizedContest (
     @ProtoId(1) @JvmField val unique_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResActivityList (
+@Serializable data class ResActivityList (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val activities: List<Activity> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ResAccountActivityData (
+@Serializable data class ResAccountActivityData (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val exchange_records: List<ExchangeRecord> = emptyList(),
     @ProtoId(3) @JvmField val task_progress_list: List<TaskProgress> = emptyList(),
@@ -3776,22 +3354,19 @@ class ResAccountActivityData (
     @ProtoId(9) @JvmField val period_task_progress_list: List<TaskProgress> = emptyList(),
     @ProtoId(10) @JvmField val random_task_progress_list: List<TaskProgress> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class ActivitySignInData (
+@Serializable data class ActivitySignInData (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val sign_in_count: Int = 0,
     @ProtoId(3) @JvmField val last_sign_in_time: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class BuffData (
+@Serializable data class BuffData (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val remain: Int = 0,
     @ProtoId(3) @JvmField val effect: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ActivityRichmanData (
+@Serializable data class ActivityRichmanData (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val location: Int = 0,
     @ProtoId(3) @JvmField val finished_count: Int = 0,
@@ -3803,64 +3378,53 @@ class ActivityRichmanData (
 
 }
 
-@Serializable 
-class ReqExchangeActivityItem (
+@Serializable data class ReqExchangeActivityItem (
     @ProtoId(1) @JvmField val exchange_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResExchangeActivityItem (
+@Serializable data class ResExchangeActivityItem (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val execute_reward: List<ExecuteReward> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqCompleteActivityTask (
+@Serializable data class ReqCompleteActivityTask (
     @ProtoId(1) @JvmField val task_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqReceiveActivityFlipTask (
+@Serializable data class ReqReceiveActivityFlipTask (
     @ProtoId(1) @JvmField val task_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResReceiveActivityFlipTask (
+@Serializable data class ResReceiveActivityFlipTask (
     @ProtoId(1) @JvmField val count: Int = 0,
     @ProtoId(2) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchActivityFlipInfo (
+@Serializable data class ReqFetchActivityFlipInfo (
     @ProtoId(1) @JvmField val activity_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchActivityFlipInfo (
+@Serializable data class ResFetchActivityFlipInfo (
     @ProtoId(1) @JvmField val rewards: List<Int> = emptyList(),
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqGainAccumulatedPointActivityReward (
+@Serializable data class ReqGainAccumulatedPointActivityReward (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val reward_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqFetchRankPointLeaderboard (
+@Serializable data class ReqFetchRankPointLeaderboard (
     @ProtoId(1) @JvmField val leaderboard_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResFetchRankPointLeaderboard (
+@Serializable data class ResFetchRankPointLeaderboard (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val items: List<Item> = emptyList(),
     @ProtoId(3) @JvmField val last_refresh_time: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class Item (
+@Serializable data class Item (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val rank: Int = 0,
     @ProtoId(3) @JvmField val view: PlayerBaseView? = null,
@@ -3869,19 +3433,16 @@ class Item (
 
 }
 
-@Serializable 
-class ReqGainRankPointReward (
+@Serializable data class ReqGainRankPointReward (
     @ProtoId(1) @JvmField val leaderboard_id: Int = 0,
     @ProtoId(2) @JvmField val activity_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqRichmanNextMove (
+@Serializable data class ReqRichmanNextMove (
     @ProtoId(1) @JvmField val activity_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResRichmanNextMove (
+@Serializable data class ResRichmanNextMove (
     @ProtoId(1) @JvmField val paths: List<PathData> = emptyList(),
     @ProtoId(2) @JvmField val dice: Int = 0,
     @ProtoId(3) @JvmField val location: Int = 0,
@@ -3894,23 +3455,20 @@ class ResRichmanNextMove (
     @ProtoId(10) @JvmField val bank_save_add: Int = 0,
     @ProtoId(11) @JvmField val error: Error? = null
 ) : IProtoMessage {
-@Serializable 
-class RewardData (
+@Serializable data class RewardData (
     @ProtoId(1) @JvmField val resource_id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val origin_count: Int = 0,
     @ProtoId(4) @JvmField val is_chest: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class PathData (
+@Serializable data class PathData (
     @ProtoId(1) @JvmField val location: Int = 0,
     @ProtoId(2) @JvmField val rewards: List<RewardData> = emptyList(),
     @ProtoId(3) @JvmField val events: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class BuffData (
+@Serializable data class BuffData (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val remain: Int = 0,
     @ProtoId(3) @JvmField val effect: Int = 0
@@ -3918,73 +3476,61 @@ class BuffData (
 
 }
 
-@Serializable 
-class ReqRichmanSpecialMove (
+@Serializable data class ReqRichmanSpecialMove (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val step: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqRichmanChestInfo (
+@Serializable data class ReqRichmanChestInfo (
     @ProtoId(1) @JvmField val activity_id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResRichmanChestInfo (
+@Serializable data class ResRichmanChestInfo (
     @ProtoId(1) @JvmField val items: List<ItemData> = emptyList(),
     @ProtoId(2) @JvmField val error: Error? = null
 ) : IProtoMessage {
-@Serializable 
-class ItemData (
+@Serializable data class ItemData (
     @ProtoId(1) @JvmField val id: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class ReqCreateGameObserveAuth (
+@Serializable data class ReqCreateGameObserveAuth (
     @ProtoId(1) @JvmField val game_uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResCreateGameObserveAuth (
+@Serializable data class ResCreateGameObserveAuth (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val token: String? = null,
     @ProtoId(3) @JvmField val location: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqRefreshGameObserveAuth (
+@Serializable data class ReqRefreshGameObserveAuth (
     @ProtoId(1) @JvmField val token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResRefreshGameObserveAuth (
+@Serializable data class ResRefreshGameObserveAuth (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val ttl: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ActionMJStart () : IProtoMessage
+@Serializable class ActionMJStart () : IProtoMessage
 
-@Serializable 
-class NewRoundOpenedTiles (
+@Serializable data class NewRoundOpenedTiles (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tiles: String? = null,
     @ProtoId(3) @JvmField val count: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class MuyuInfo (
+@Serializable data class MuyuInfo (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val count: Int = 0,
     @ProtoId(3) @JvmField val count_max: Int = 0,
     @ProtoId(4) @JvmField val id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ActionNewRound (
+@Serializable data class ActionNewRound (
     @ProtoId(1) @JvmField val chang: Int = 0,
     @ProtoId(2) @JvmField val ju: Int = 0,
     @ProtoId(3) @JvmField val ben: Int = 0,
@@ -4003,8 +3549,7 @@ class ActionNewRound (
     @ProtoId(16) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordNewRound (
+@Serializable data class RecordNewRound (
     @ProtoId(1) @JvmField val chang: Int = 0,
     @ProtoId(2) @JvmField val ju: Int = 0,
     @ProtoId(3) @JvmField val ben: Int = 0,
@@ -4024,16 +3569,14 @@ class RecordNewRound (
     @ProtoId(17) @JvmField val opens: List<NewRoundOpenedTiles> = emptyList(),
     @ProtoId(18) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage {
-@Serializable 
-class TingPai (
+@Serializable data class TingPai (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tingpais1: List<TingPaiInfo> = emptyList()
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class GameSnapshot (
+@Serializable data class GameSnapshot (
     @ProtoId(1) @JvmField val chang: Int = 0,
     @ProtoId(2) @JvmField val ju: Int = 0,
     @ProtoId(3) @JvmField val ben: Int = 0,
@@ -4045,16 +3588,14 @@ class GameSnapshot (
     @ProtoId(9) @JvmField val players: List<PlayerSnapshot> = emptyList(),
     @ProtoId(10) @JvmField val zhenting: Boolean = false
 ) : IProtoMessage {
-@Serializable 
-class PlayerSnapshot (
+@Serializable data class PlayerSnapshot (
     @ProtoId(1) @JvmField val score: Int = 0,
     @ProtoId(2) @JvmField val liqiposition: Int = 0,
     @ProtoId(3) @JvmField val tilenum: Int = 0,
     @ProtoId(4) @JvmField val qipais: String? = null,
     @ProtoId(5) @JvmField val mings: List<Fulu> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class Fulu (
+@Serializable data class Fulu (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val tile: String? = null,
     @ProtoId(3) @JvmField val from: List<Int> = emptyList()
@@ -4064,48 +3605,41 @@ class Fulu (
 
 }
 
-@Serializable 
-class ActionPrototype (
+@Serializable data class ActionPrototype (
     @ProtoId(1) @JvmField val step: Int = 0,
     @ProtoId(2) @JvmField val name: String? = null,
     @ProtoId(3) @JvmField val data: ByteArray = EMPTY_BYTE_ARRAY
 ) : IProtoMessage
 
-@Serializable 
-class GameDetailRecords (
+@Serializable data class GameDetailRecords (
     @ProtoId(1) @JvmField val records: ByteArray = EMPTY_BYTE_ARRAY
 ) : IProtoMessage
 
-@Serializable 
-class OptionalOperation (
+@Serializable data class OptionalOperation (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val combination: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class OptionalOperationList (
+@Serializable data class OptionalOperationList (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val operation_list: List<OptionalOperation> = emptyList(),
     @ProtoId(4) @JvmField val time_add: Int = 0,
     @ProtoId(5) @JvmField val time_fixed: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class LiQiSuccess (
+@Serializable data class LiQiSuccess (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val score: Int = 0,
     @ProtoId(3) @JvmField val liqibang: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class FanInfo (
+@Serializable data class FanInfo (
     @ProtoId(1) @JvmField val name: String? = null,
     @ProtoId(2) @JvmField val `val`: Int = 0,
     @ProtoId(3) @JvmField val id: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class HuleInfo (
+@Serializable data class HuleInfo (
     @ProtoId(1) @JvmField val hand: String? = null,
     @ProtoId(2) @JvmField val ming: String? = null,
     @ProtoId(3) @JvmField val hu_tile: String? = null,
@@ -4127,8 +3661,7 @@ class HuleInfo (
     @ProtoId(19) @JvmField val point_sum: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class TingPaiInfo (
+@Serializable data class TingPaiInfo (
     @ProtoId(1) @JvmField val tile: String? = null,
     @ProtoId(2) @JvmField val haveyi: Boolean = false,
     @ProtoId(3) @JvmField val yiman: Boolean = false,
@@ -4140,20 +3673,17 @@ class TingPaiInfo (
     @ProtoId(9) @JvmField val fu_zimo: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class TingPaiDiscardInfo (
+@Serializable data class TingPaiDiscardInfo (
     @ProtoId(1) @JvmField val tile: String? = null,
     @ProtoId(2) @JvmField val zhenting: Boolean = false,
     @ProtoId(3) @JvmField val infos: List<TingPaiInfo> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameEnd (
+@Serializable data class GameEnd (
     @ProtoId(1) @JvmField val scores: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ActionDiscardTile (
+@Serializable data class ActionDiscardTile (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tile: String? = null,
     @ProtoId(3) @JvmField val is_liqi: Boolean = false,
@@ -4167,8 +3697,7 @@ class ActionDiscardTile (
     @ProtoId(11) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordDiscardTile (
+@Serializable data class RecordDiscardTile (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tile: String? = null,
     @ProtoId(3) @JvmField val is_liqi: Boolean = false,
@@ -4182,8 +3711,7 @@ class RecordDiscardTile (
     @ProtoId(12) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionDealTile (
+@Serializable data class ActionDealTile (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tile: String? = null,
     @ProtoId(3) @JvmField val left_tile_count: Int = 0,
@@ -4196,8 +3724,7 @@ class ActionDealTile (
     @ProtoId(10) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordDealTile (
+@Serializable data class RecordDealTile (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val tile: String? = null,
     @ProtoId(3) @JvmField val left_tile_count: Int = 0,
@@ -4209,8 +3736,7 @@ class RecordDealTile (
     @ProtoId(11) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionChiPengGang (
+@Serializable data class ActionChiPengGang (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val tiles: String? = null,
@@ -4223,8 +3749,7 @@ class ActionChiPengGang (
     @ProtoId(10) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordChiPengGang (
+@Serializable data class RecordChiPengGang (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val tiles: String? = null,
@@ -4236,8 +3761,7 @@ class RecordChiPengGang (
     @ProtoId(10) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionAnGangAddGang (
+@Serializable data class ActionAnGangAddGang (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val tiles: String? = null,
@@ -4248,8 +3772,7 @@ class ActionAnGangAddGang (
     @ProtoId(9) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordAnGangAddGang (
+@Serializable data class RecordAnGangAddGang (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val type: Int = 0,
     @ProtoId(3) @JvmField val tiles: String? = null,
@@ -4258,8 +3781,7 @@ class RecordAnGangAddGang (
     @ProtoId(8) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionBaBei (
+@Serializable data class ActionBaBei (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(4) @JvmField val operation: OptionalOperationList? = null,
     @ProtoId(6) @JvmField val doras: String? = null,
@@ -4270,8 +3792,7 @@ class ActionBaBei (
     @ProtoId(11) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordBaBei (
+@Serializable data class RecordBaBei (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(6) @JvmField val doras: String? = null,
     @ProtoId(7) @JvmField val operations: List<OptionalOperationList> = emptyList(),
@@ -4280,8 +3801,7 @@ class RecordBaBei (
     @ProtoId(11) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionHule (
+@Serializable data class ActionHule (
     @ProtoId(1) @JvmField val hules: List<HuleInfo> = emptyList(),
     @ProtoId(2) @JvmField val old_scores: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val delta_scores: List<Int> = emptyList(),
@@ -4292,8 +3812,7 @@ class ActionHule (
     @ProtoId(8) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordHule (
+@Serializable data class RecordHule (
     @ProtoId(1) @JvmField val hules: List<HuleInfo> = emptyList(),
     @ProtoId(2) @JvmField val old_scores: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val delta_scores: List<Int> = emptyList(),
@@ -4304,8 +3823,7 @@ class RecordHule (
     @ProtoId(8) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class ActionLiuJu (
+@Serializable data class ActionLiuJu (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val gameend: GameEnd? = null,
     @ProtoId(3) @JvmField val seat: Int = 0,
@@ -4315,8 +3833,7 @@ class ActionLiuJu (
     @ProtoId(7) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordLiuJu (
+@Serializable data class RecordLiuJu (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val gameend: GameEnd? = null,
     @ProtoId(3) @JvmField val seat: Int = 0,
@@ -4326,15 +3843,13 @@ class RecordLiuJu (
     @ProtoId(7) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class NoTilePlayerInfo (
+@Serializable data class NoTilePlayerInfo (
     @ProtoId(3) @JvmField val tingpai: Boolean = false,
     @ProtoId(4) @JvmField val hand: String? = null,
     @ProtoId(5) @JvmField val tings: List<TingPaiInfo> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NoTileScoreInfo (
+@Serializable data class NoTileScoreInfo (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val old_scores: List<Int> = emptyList(),
     @ProtoId(3) @JvmField val delta_scores: List<Int> = emptyList(),
@@ -4344,8 +3859,7 @@ class NoTileScoreInfo (
     @ProtoId(7) @JvmField val score: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ActionNoTile (
+@Serializable data class ActionNoTile (
     @ProtoId(1) @JvmField val liujumanguan: Boolean = false,
     @ProtoId(2) @JvmField val players: List<NoTilePlayerInfo> = emptyList(),
     @ProtoId(3) @JvmField val scores: List<NoTileScoreInfo> = emptyList(),
@@ -4353,8 +3867,7 @@ class ActionNoTile (
     @ProtoId(5) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class RecordNoTile (
+@Serializable data class RecordNoTile (
     @ProtoId(1) @JvmField val liujumanguan: Boolean = false,
     @ProtoId(2) @JvmField val players: List<NoTilePlayerInfo> = emptyList(),
     @ProtoId(3) @JvmField val scores: List<NoTileScoreInfo> = emptyList(),
@@ -4362,8 +3875,7 @@ class RecordNoTile (
     @ProtoId(5) @JvmField val muyu: MuyuInfo? = null
 ) : IProtoMessage
 
-@Serializable 
-class PlayerLeaving (
+@Serializable data class PlayerLeaving (
     @ProtoId(1) @JvmField val seat: Int = 0
 ) : IProtoMessage
 
@@ -4438,15 +3950,13 @@ class FastTest {
     }
 }
 
-@Serializable 
-class ReqAuthGame (
+@Serializable data class ReqAuthGame (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val token: String? = null,
     @ProtoId(3) @JvmField val game_uuid: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResAuthGame (
+@Serializable data class ResAuthGame (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val players: List<PlayerGameView> = emptyList(),
     @ProtoId(3) @JvmField val seat_list: List<Int> = emptyList(),
@@ -4455,8 +3965,7 @@ class ResAuthGame (
     @ProtoId(6) @JvmField val ready_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class GameRestore (
+@Serializable data class GameRestore (
     @ProtoId(1) @JvmField val snapshot: GameSnapshot? = null,
     @ProtoId(2) @JvmField val actions: List<ActionPrototype> = emptyList(),
     @ProtoId(3) @JvmField val passed_waiting_time: Int = 0,
@@ -4465,30 +3974,26 @@ class GameRestore (
     @ProtoId(6) @JvmField val last_pause_time_ms: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResEnterGame (
+@Serializable data class ResEnterGame (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val is_end: Boolean = false,
     @ProtoId(3) @JvmField val step: Int = 0,
     @ProtoId(4) @JvmField val game_restore: GameRestore? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqSyncGame (
+@Serializable data class ReqSyncGame (
     @ProtoId(1) @JvmField val round_id: String? = null,
     @ProtoId(2) @JvmField val step: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ResSyncGame (
+@Serializable data class ResSyncGame (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val is_end: Boolean = false,
     @ProtoId(3) @JvmField val step: Int = 0,
     @ProtoId(4) @JvmField val game_restore: GameRestore? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqSelfOperation (
+@Serializable data class ReqSelfOperation (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val index: Int = 0,
     @ProtoId(3) @JvmField val tile: String? = null,
@@ -4498,111 +4003,93 @@ class ReqSelfOperation (
     @ProtoId(7) @JvmField val tile_state: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqChiPengGang (
+@Serializable data class ReqChiPengGang (
     @ProtoId(1) @JvmField val type: Int = 0,
     @ProtoId(2) @JvmField val index: Int = 0,
     @ProtoId(3) @JvmField val cancel_operation: Boolean = false,
     @ProtoId(6) @JvmField val timeuse: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class ReqBroadcastInGame (
+@Serializable data class ReqBroadcastInGame (
     @ProtoId(1) @JvmField val content: String? = null,
     @ProtoId(2) @JvmField val except_self: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ReqGMCommandInGaming (
+@Serializable data class ReqGMCommandInGaming (
     @ProtoId(1) @JvmField val json_data: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResGamePlayerState (
+@Serializable data class ResGamePlayerState (
     @ProtoId(1) @JvmField val error: Error? = null,
     @ProtoId(2) @JvmField val state_list: List<GamePlayerState> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class ReqVoteGameEnd (
+@Serializable data class ReqVoteGameEnd (
     @ProtoId(1) @JvmField val yes: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class ResGameEndVote (
+@Serializable data class ResGameEndVote (
     @ProtoId(1) @JvmField val success: Boolean = false,
     @ProtoId(2) @JvmField val vote_cd_end_time: Int = 0,
     @ProtoId(3) @JvmField val error: Error? = null
 ) : IProtoMessage
 
-@Serializable 
-class ReqAuthObserve (
+@Serializable data class ReqAuthObserve (
     @ProtoId(1) @JvmField val token: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class ResStartObserve (
+@Serializable data class ResStartObserve (
     @ProtoId(1) @JvmField val head: GameLiveHead? = null,
     @ProtoId(2) @JvmField val passed: GameLiveSegment? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyNewGame (
+@Serializable data class NotifyNewGame (
     @ProtoId(1) @JvmField val game_uuid: String? = null,
     @ProtoId(2) @JvmField val player_list: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyPlayerLoadGameReady (
+@Serializable data class NotifyPlayerLoadGameReady (
     @ProtoId(1) @JvmField val ready_id_list: List<Int> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class NotifyGameBroadcast (
+@Serializable data class NotifyGameBroadcast (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val content: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyGameEndResult (
+@Serializable data class NotifyGameEndResult (
     @ProtoId(1) @JvmField val result: GameEndResult? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyGameTerminate (
+@Serializable data class NotifyGameTerminate (
     @ProtoId(1) @JvmField val reason: String? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyPlayerConnectionState (
+@Serializable data class NotifyPlayerConnectionState (
     @ProtoId(1) @JvmField val seat: Int = 0,
     @ProtoId(2) @JvmField val state: GamePlayerState? = null
 ) : IProtoMessage
 
-@Serializable 
-class NotifyAccountLevelChange (
+@Serializable data class NotifyAccountLevelChange (
     @ProtoId(1) @JvmField val origin: AccountLevel? = null,
     @ProtoId(2) @JvmField val final: AccountLevel? = null,
     @ProtoId(3) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class NotifyGameFinishReward (
+@Serializable data class NotifyGameFinishReward (
     @ProtoId(1) @JvmField val mode_id: Int = 0,
     @ProtoId(2) @JvmField val level_change: LevelChange? = null,
     @ProtoId(3) @JvmField val match_chest: MatchChest? = null,
     @ProtoId(4) @JvmField val main_character: MainCharacter? = null,
     @ProtoId(5) @JvmField val character_gift: CharacterGift? = null
 ) : IProtoMessage {
-@Serializable 
-class LevelChange (
+@Serializable data class LevelChange (
     @ProtoId(1) @JvmField val origin: AccountLevel? = null,
     @ProtoId(2) @JvmField val final: AccountLevel? = null,
     @ProtoId(3) @JvmField val type: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class MatchChest (
+@Serializable data class MatchChest (
     @ProtoId(1) @JvmField val chest_id: Int = 0,
     @ProtoId(2) @JvmField val origin: Int = 0,
     @ProtoId(3) @JvmField val final: Int = 0,
@@ -4610,15 +4097,13 @@ class MatchChest (
     @ProtoId(5) @JvmField val rewards: List<RewardSlot> = emptyList()
 ) : IProtoMessage
 
-@Serializable 
-class MainCharacter (
+@Serializable data class MainCharacter (
     @ProtoId(1) @JvmField val level: Int = 0,
     @ProtoId(2) @JvmField val exp: Int = 0,
     @ProtoId(3) @JvmField val add: Int = 0
 ) : IProtoMessage
 
-@Serializable 
-class CharacterGift (
+@Serializable data class CharacterGift (
     @ProtoId(1) @JvmField val origin: Int = 0,
     @ProtoId(2) @JvmField val final: Int = 0,
     @ProtoId(3) @JvmField val add: Int = 0,
@@ -4627,63 +4112,53 @@ class CharacterGift (
 
 }
 
-@Serializable 
-class NotifyActivityReward (
+@Serializable data class NotifyActivityReward (
     @ProtoId(1) @JvmField val activity_reward: List<ActivityReward> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class ActivityReward (
+@Serializable data class ActivityReward (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val rewards: List<RewardSlot> = emptyList()
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class NotifyActivityPoint (
+@Serializable data class NotifyActivityPoint (
     @ProtoId(1) @JvmField val activity_points: List<ActivityPoint> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class ActivityPoint (
+@Serializable data class ActivityPoint (
     @ProtoId(1) @JvmField val activity_id: Int = 0,
     @ProtoId(2) @JvmField val point: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class NotifyLeaderboardPoint (
+@Serializable data class NotifyLeaderboardPoint (
     @ProtoId(1) @JvmField val leaderboard_points: List<LeaderboardPoint> = emptyList()
 ) : IProtoMessage {
-@Serializable 
-class LeaderboardPoint (
+@Serializable data class LeaderboardPoint (
     @ProtoId(1) @JvmField val leaderboard_id: Int = 0,
     @ProtoId(2) @JvmField val point: Int = 0
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class NotifyGamePause (
+@Serializable data class NotifyGamePause (
     @ProtoId(1) @JvmField val paused: Boolean = false
 ) : IProtoMessage
 
-@Serializable 
-class NotifyEndGameVote (
+@Serializable data class NotifyEndGameVote (
     @ProtoId(1) @JvmField val results: List<VoteResult> = emptyList(),
     @ProtoId(2) @JvmField val start_time: Int = 0,
     @ProtoId(3) @JvmField val duration_time: Int = 0
 ) : IProtoMessage {
-@Serializable 
-class VoteResult (
+@Serializable data class VoteResult (
     @ProtoId(1) @JvmField val account_id: Int = 0,
     @ProtoId(2) @JvmField val yes: Boolean = false
 ) : IProtoMessage
 
 }
 
-@Serializable 
-class NotifyObserveData (
+@Serializable data class NotifyObserveData (
     @ProtoId(1) @JvmField val unit: GameLiveUnit? = null
 ) : IProtoMessage
 

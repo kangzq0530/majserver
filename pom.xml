@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <kotlin.version>1.4-M2</kotlin.version>
-        <kotlinx-serialization.version>0.20.0</kotlinx-serialization.version>
+        <kotlinx-serialization.version>0.20.0-1.4-M2</kotlinx-serialization.version>
     </properties>
 
     <dependencies>

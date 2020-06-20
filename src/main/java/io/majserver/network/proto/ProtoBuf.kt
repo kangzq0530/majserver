@@ -123,8 +123,7 @@ public class ProtoBuf(
         override fun shouldEncodeElementDefault(descriptor: SerialDescriptor, index: Int): Boolean = encodeDefaults
 
         override fun beginStructure(
-                descriptor: SerialDescriptor,
-                vararg typeSerializers: KSerializer<*>
+                descriptor: SerialDescriptor
         ): CompositeEncoder = when (descriptor.kind) {
             StructureKind.LIST -> RepeatedWriter(encoder, currentTag)
             StructureKind.CLASS, StructureKind.OBJECT, is PolymorphicKind -> ObjectWriter(currentTagOrNull, encoder)
@@ -181,7 +180,7 @@ public class ProtoBuf(
 
     internal open inner class ObjectWriter(
             val parentTag: ProtoDesc?, private val parentEncoder: ProtobufEncoder,
-            private val stream: ByteArrayOutputStream = ByteArrayOutputStream()
+            private val stream: ByteArrayOutput = ByteArrayOutput()
     ) : ProtobufWriter(ProtobufEncoder(stream)) {
         override fun endEncode(descriptor: SerialDescriptor) {
             if (parentTag != null) {
@@ -202,7 +201,7 @@ public class ProtoBuf(
         override fun SerialDescriptor.getTag(index: Int) = curTag
     }
 
-    internal class ProtobufEncoder(val out: ByteArrayOutputStream) {
+    internal class ProtobufEncoder(val out: ByteArrayOutput) {
 
         fun writeBytes(bytes: ByteArray, tag: Int) {
             val header = encode32((tag shl 3) or SIZE_DELIMITED)
@@ -349,7 +348,7 @@ public class ProtoBuf(
                 else 2 to (parentTag?.second ?: ProtoNumberType.DEFAULT)
     }
 
-    internal class ProtobufDecoder(val inp: ByteArrayInputStream) {
+    internal class ProtobufDecoder(val inp: ByteArrayInput) {
         val curId
             get() = curTag.first
         private var curTag: Pair<Int, Int> = -1 to -1
@@ -403,9 +402,9 @@ public class ProtoBuf(
                     remainingPacked = decode32()
                     check(remainingPacked > 0)
                 }
-                val availableBefore = inp.available()
+                val availableBefore = inp.availableBytes
                 ans = decode32(format)
-                remainingPacked -= (availableBefore - inp.available())
+                remainingPacked -= (availableBefore - inp.availableBytes)
                 if (remainingPacked == 0) {
                     readTag()
                 }
@@ -426,9 +425,9 @@ public class ProtoBuf(
                     remainingPacked = decode32()
                     check(remainingPacked > 0)
                 }
-                val availableBefore = inp.available()
+                val availableBefore = inp.availableBytes
                 ans = decode64(format)
-                remainingPacked -= (availableBefore - inp.available())
+                remainingPacked -= (availableBefore - inp.availableBytes)
                 if (remainingPacked == 0) {
                     readTag()
                 }
@@ -530,7 +529,7 @@ public class ProtoBuf(
             return out
         }
 
-        internal fun decodeVarint(inp: InputStream, bitLimit: Int = 32, eofOnStartAllowed: Boolean = false): Long {
+        internal fun decodeVarint(inp: Input, bitLimit: Int = 32, eofOnStartAllowed: Boolean = false): Long {
             var result = 0L
             var shift = 0
             var b: Int
@@ -551,7 +550,7 @@ public class ProtoBuf(
             return result
         }
 
-        internal fun decodeSignedVarintInt(inp: InputStream): Int {
+        internal fun decodeSignedVarintInt(inp: Input): Int {
             val raw = decodeVarint(inp, 32).toInt()
             val temp = raw shl 31 shr 31 xor raw shr 1
             // This extra step lets us deal with the largest signed values by treating
@@ -560,7 +559,7 @@ public class ProtoBuf(
             return temp xor (raw and (1 shl 31))
         }
 
-        internal fun decodeSignedVarintLong(inp: InputStream): Long {
+        internal fun decodeSignedVarintLong(inp: Input): Long {
             val raw = decodeVarint(inp, 64)
             val temp = raw shl 63 shr 63 xor raw shr 1
             // This extra step lets us deal with the largest signed values by treating
@@ -576,7 +575,7 @@ public class ProtoBuf(
         private fun makeDelimited(decoder: ProtobufDecoder, parentTag: ProtoDesc?): ProtobufDecoder {
             if (parentTag == null) return decoder
             val bytes = decoder.nextObject()
-            return ProtobufDecoder(ByteArrayInputStream(bytes))
+            return ProtobufDecoder(ByteArrayInput(bytes))
         }
 
         private fun SerialDescriptor.getProtoDesc(index: Int): ProtoDesc {
@@ -597,14 +596,14 @@ public class ProtoBuf(
     }
 
     override fun <T> dump(serializer: SerializationStrategy<T>, value: T): ByteArray {
-        val encoder = ByteArrayOutputStream()
+        val encoder = ByteArrayOutput()
         val dumper = ProtobufWriter(ProtobufEncoder(encoder))
         dumper.encode(serializer, value)
         return encoder.toByteArray()
     }
 
     override fun <T> load(deserializer: DeserializationStrategy<T>, bytes: ByteArray): T {
-        val stream = ByteArrayInputStream(bytes)
+        val stream = ByteArrayInput(bytes)
         val reader = ProtobufReader(ProtobufDecoder(stream))
         return reader.decode(deserializer)
     }
@@ -638,4 +637,14 @@ private fun Long.toByteArray(): ByteArray {
         result[7 - i] = (value shr i * 8).toByte()
     }
     return result
+}
+
+@InternalSerializationApi
+private fun Input.readExactNBytes(bytesCount: Int): ByteArray {
+    if (bytesCount > availableBytes) {
+        error("Unexpected EOF, available $availableBytes bytes, requested: $bytesCount")
+    }
+    val array = ByteArray(bytesCount)
+    read(array, 0, bytesCount)
+    return array
 }

@@ -57,7 +57,7 @@ private class ProtoMessage(name: String) : ProtoContainer(name) {
 
     override val ktString: String
         get() = StringBuilder().apply {
-            append("@Serializable \nclass $name (")
+            append("@Serializable ${if (elements.isNotEmpty()) "data " else ""}class $name (")
             if (elements.isNotEmpty()) {
                 var first = true
                 elements.forEach {

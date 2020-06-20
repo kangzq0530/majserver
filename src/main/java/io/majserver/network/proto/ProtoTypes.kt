@@ -1,6 +1,6 @@
 package io.majserver.network.proto
 
-import io.majserver.network.Handlers
+import io.majserver.network.Handlers.handlers
 import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.dump
 import kotlinx.serialization.load
@@ -16,17 +16,14 @@ abstract class IProtoRpc<Req: IProtoMessage, Res: IProtoMessage>(
 ) {
     abstract fun decodeReq(data: ByteArray) : Req
     abstract fun encodeRes(res: Res) : ByteArray
-    fun handle(array: ByteArray) : Res {
+    fun handle(array: ByteArray) : ByteArray {
         val req = decodeReq(array)
-        return callable(req)
+        val res = callable(req)
+        return encodeRes(res)
     }
     init {
-        Handlers.register(this)
+        handlers[this.name] = this
     }
-}
-
-inline fun <reified T :IProtoMessage> wrap(name: String, message: T): Wrapper {
-    return Wrapper(name, message.serialize())
 }
 
 @OptIn(ImplicitReflectionSerializer::class)

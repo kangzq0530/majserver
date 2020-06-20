@@ -2,13 +2,20 @@ package io.majserver.network
 
 import io.majserver.network.proto.*
 import io.majserver.network.proto.ProtoBuf
-import kotlinx.io.ByteArrayOutputStream
-import kotlinx.serialization.ImplicitReflectionSerializer
 import org.java_websocket.WebSocket
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 
-val log = LoggerFactory.getLogger("NetworkClient")
+val log: Logger = LoggerFactory.getLogger("NetworkClient")
+
+typealias MessageType = Byte
+
+const val Null: MessageType = 0
+const val Notify: MessageType = 1
+const val Request: MessageType = 2
+const val Response: MessageType = 3
 
 class NetworkClient(
         val socket: WebSocket
@@ -22,10 +29,9 @@ class NetworkClient(
 
     }
 
-    @ImplicitReflectionSerializer
     fun onMessage(buffer: ByteBuffer) {
-        when (val type = buffer.get().toInt()) {
-            1 -> {
+        when (val type = buffer.get()) {
+            Request -> {
                 val index1 = buffer.get()
                 val index2 = buffer.get()
                 val data = ByteArray(buffer.remaining()).apply { buffer.get(this) }
@@ -35,12 +41,13 @@ class NetworkClient(
                     log.warn("Unhandled rpc: ${wrapper.name}")
                     return
                 }
+                log.info("rpc: ${wrapper.name}")
                 val res = handler.handle(wrapper.data)
                 socket.send(ByteArrayOutputStream().apply {
                     write(3)
                     write(index1.toInt())
                     write(index2.toInt())
-                    write(wrap(wrapper.name!!, res).serialize())
+                    write(ProtoBuf.dump(Wrapper.serializer(), Wrapper(wrapper.name!!, res)))
                 }.toByteArray())
             }
         }
