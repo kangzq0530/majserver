@@ -1,4 +1,4 @@
-package io.majserver.server
+package io.majserver.network
 
 import io.majserver.protobuf.ProtoBuf
 import kotlinx.serialization.DeserializationStrategy
@@ -20,8 +20,6 @@ fun main() {
 
 class WebSocketServer(address: InetSocketAddress?) : org.java_websocket.server.WebSocketServer(address) {
     override fun onOpen(conn: WebSocket, handshake: ClientHandshake) {
-        conn.send("Welcome to the server!") //This method sends a message to the new client
-        broadcast("new connection: " + handshake.resourceDescriptor) //This method sends a message to all clients connected
         println("new connection to " + conn.getRemoteSocketAddress())
     }
 
