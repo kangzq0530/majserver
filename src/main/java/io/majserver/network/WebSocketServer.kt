@@ -45,8 +45,4 @@ class WebSocketServer(address: InetSocketAddress?) : org.java_websocket.server.W
     override fun onStart() {
         println("server started successfully")
     }
-
-    private inline fun <reified T : Any> serialize(serializer: SerializationStrategy<T>, value: T): ByteArray = ProtoBuf.dump(serializer, value)
-
-    private inline fun <reified T : Any> deserialize(deserializer: DeserializationStrategy<T>, data: ByteArray): T = ProtoBuf.load(deserializer, data)
 }

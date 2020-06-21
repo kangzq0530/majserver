@@ -1,5 +1,6 @@
 package io.majserver.network
 
+import io.majserver.network.handler.lobby.LoginHandler
 import io.majserver.network.proto.*
 
 object Handlers {
@@ -8,13 +9,13 @@ object Handlers {
 
     @JvmStatic
     fun registerHandlers() {
-        val rpc = Lobby.Login {
-            println(it)
-            ResLogin(
-                    access_token = it.password
-            )
-        }
-        handlers[rpc.name] = rpc
+        registerLobby()
+    }
+
+    private fun registerLobby() {
+        Lobby.Heatbeat { ResCommon() }
+        Lobby.Login(LoginHandler.login)
+        Lobby.FetchServerTime { ResServerTime(server_time = (System.currentTimeMillis() / 1000).toInt()) }
     }
 
 }
