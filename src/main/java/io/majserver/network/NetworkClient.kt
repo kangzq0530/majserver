@@ -47,14 +47,14 @@ class NetworkClient(
                     write(Response.toInt())
                     write(index1.toInt())
                     write(index2.toInt())
-                    write(wrap(wrapper.name!!, res))
+                    write(wrap(res))
                 }.toByteArray())
             }
         }
     }
 
-    private fun wrap(name: String, data: ByteArray): ByteArray {
-        return ProtoBuf.dump(Wrapper.serializer(), Wrapper(name, data))
+    private fun wrap(message: IProtoMessage): ByteArray {
+        return message.wrap().encode()
     }
 
     private fun unwrap(data: ByteArray): Wrapper {

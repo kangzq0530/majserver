@@ -4,6 +4,8 @@ import kotlinx.serialization.json.*
 import java.io.File
 
 const val PackageName = "lq"
+var globalLinePrefix = 0
+
 fun main() {
     val json = Json.parseJson(File("majsoul/liqi.json").readBytes().toString(Charsets.UTF_8))
     val elements = json.jsonObject.getObject("nested").getObject(PackageName).getObject("nested")
@@ -57,28 +59,38 @@ private class ProtoMessage(name: String) : ProtoContainer(name) {
 
     override val ktString: String
         get() = StringBuilder().apply {
+            repeat(globalLinePrefix) { append("    ") }
             append("@Serializable ${if (elements.isNotEmpty()) "data " else ""}class $name (")
+            globalLinePrefix++
             if (elements.isNotEmpty()) {
                 var first = true
                 elements.forEach {
                     if (!first) {
                         append(",")
                     }
-                    appendLine().append("    ")
+                    appendLine()
+                    repeat(globalLinePrefix) { append("    ") }
                     append(it.ktString)
                     first = false
                 }
                 appendLine()
             }
-            append(") : IProtoMessage")
-
+            globalLinePrefix--
+            repeat(globalLinePrefix) { append("    ") }
+            append(") : IProtoMessage {").appendLine()
+            globalLinePrefix++
+            repeat(globalLinePrefix) { append("    ") }
+            append("override fun encode() = ProtoBuf.dump(serializer(), this)").appendLine()
+            repeat(globalLinePrefix) { append("    ") }
+            append("override fun wrap() = Wrapper(\".lq.$name\", encode())").appendLine()
             if (nested.isNotEmpty()) {
-                append(" {").appendLine()
                 nested.forEach {
-                    appendLine(it.ktString).appendLine()
+                    appendLine().appendLine(it.ktString).appendLine()
                 }
-                append("}")
             }
+            globalLinePrefix--
+            repeat(globalLinePrefix) { append("    ") }
+            append("}")
         }.toString()
 }
 
@@ -109,9 +121,8 @@ private fun formatTypeWithValue(type: String, rule: String): String {
 
 private class ProtoRpc(methodName: String, val serviceName: String, val requestType: String, val responseType: String) : ProtoEntity(methodName) {
     override val ktString: String
-        get() = """class ${name[0].toUpperCase() + name.substring(1)}(callable: ($requestType) -> $responseType): IProtoRpc<$requestType, $responseType>(".$PackageName.$serviceName.$name", callable) {
-        override fun decodeReq(data: ByteArray): $requestType = ProtoBuf.load($requestType.serializer(), data)
-        override fun encodeRes(res: $responseType): ByteArray = ProtoBuf.dump($responseType.serializer(), res)
+        get() = """object ${name[0].toUpperCase() + name.substring(1)}: IProtoRpc<$requestType, $responseType>(".$PackageName.$serviceName.$name") {
+        override fun decodeReq(data: ByteArray) = ProtoBuf.load($requestType.serializer(), data)
     }"""
 }
 

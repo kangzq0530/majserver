@@ -32,7 +32,6 @@ class WebSocketServer(address: InetSocketAddress?) : org.java_websocket.server.W
     }
 
     override fun onMessage(conn: WebSocket, message: String) {
-        println("received message from " + conn.getRemoteSocketAddress().toString() + ": " + message)
     }
 
     override fun onMessage(conn: WebSocket, message: ByteBuffer) {
