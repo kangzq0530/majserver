@@ -30,12 +30,12 @@ class NetworkClient(
     }
 
     fun onMessage(buffer: ByteBuffer) {
-        when (val type = buffer.get()) {
+        when (buffer.get()) {
             Request -> {
                 val index1 = buffer.get()
                 val index2 = buffer.get()
                 val data = ByteArray(buffer.remaining()).apply { buffer.get(this) }
-                val wrapper = ProtoBuf.load(Wrapper.serializer(), data)
+                val wrapper = unwrap(data)
                 val handler = Handlers.handlers[wrapper.name]
                 if (handler == null) {
                     log.warn("Unhandled rpc: ${wrapper.name}")
@@ -44,13 +44,21 @@ class NetworkClient(
                 log.info("rpc: ${wrapper.name}")
                 val res = handler.handle(wrapper.data)
                 socket.send(ByteArrayOutputStream().apply {
-                    write(3)
+                    write(Response.toInt())
                     write(index1.toInt())
                     write(index2.toInt())
-                    write(ProtoBuf.dump(Wrapper.serializer(), Wrapper(wrapper.name!!, res)))
+                    write(wrap(wrapper.name!!, res))
                 }.toByteArray())
             }
         }
+    }
+
+    private fun wrap(name: String, data: ByteArray): ByteArray {
+        return ProtoBuf.dump(Wrapper.serializer(), Wrapper(name, data))
+    }
+
+    private fun unwrap(data: ByteArray): Wrapper {
+        return ProtoBuf.load(Wrapper.serializer(), data)
     }
 }
 
